@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="./Ex-morphogen/exmo_main.css">
 
 
 </head>
 <body id="body">
 
-{{msg}}
+
+IchiColor(<input v-model="colors[0]" type="text" class="exmo_input_text" list="team_list">) =  {{colors[0]|ichiColor|json}}
+
+
+
+
+
 
 
 <script src="./vue.js"></script>
+<script src="./vs/one-color.js"></script>
 <script src="./demo-main.js"></script>
+
+
 </body>
 </html>
