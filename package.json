@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "demo": "webpack --config webpack_DEMO.config.js",
+    "demo-w": "webpack -w --config webpack_DEMO.config.js",
     "build": "webpack --config webpack_BUILD.config.js"
   },
   "author": "nullice",

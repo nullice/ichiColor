@@ -7,11 +7,11 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        main:['babel-polyfill','./src/ichi-color.js'],
+        main:['babel-polyfill','./demo/demo.js'],
     },
     output: {
-        path: './bin',
-        filename: 'ichi-color-full.js'
+        path: './demo',
+        filename: 'demo-main.js'
     },
     target: 'web',
 

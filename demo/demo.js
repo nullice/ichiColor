@@ -7,14 +7,14 @@ import IchiColor from "./../src/ichi-color.js"
 
 var mainVue = new Vue({
     el: 'body',
-    data: {},
+    data: {
+        msg:"sadfasdfasdfds"
+        
+        
+    },
     components: {
         // include the required component
         // in the options
-        "attr-panel": AttrPanel,
-        "layers-panel": LayerSelectors,
-        "var-panel": VarPanel,
-        "expression-panel": ExpressionPanel
     }
 })
 
