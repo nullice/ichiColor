@@ -10,12 +10,34 @@
 <body id="body">
 
 
-IchiColor(<input v-model="colors[0]" type="text" class="exmo_input_text" list="team_list">) =  {{colors[0]|ichiColor|json}}
+IchiColor(<input v-model="colors[0]" type="text" class="exmo_input_text" list="team_list">) =
+{{colors[0]|ichiColor|json}}
+
+<div>
+    H: <input v-model="colors[1]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">
+    S <input v-model="colors[2]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">
+    V <input v-model="colors[3]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">
 
 
 
+<div>
+    {{scolor1 |json}}<br>
+    {{scolor1.hex()}}<br>
+    {{scolor1._getHsv()|json}} <br>
+    <div style="width: 100px; height: 20px; background: {{scolor1.hex()}};"></div>
+</div>
 
 
+    <div>
+        色相： <input v-model="adjust[0]" type="range" class="exmo_range" v-on:change="scolor1.adjust_hueSaturation(adjust[0],adjust[1],adjust[2])">{{adjust[0]}}
+        <br>
+        饱和度： <input v-model="adjust[1]" type="range" class="exmo_range"v-on:change="scolor1.adjust_hueSaturation(adjust[0],adjust[1],adjust[2])">{{adjust[1]}}
+        <br>
+        明度： <input v-model="adjust[2]" type="range" class="exmo_range" v-on:change="scolor1.adjust_hueSaturation(adjust[0],adjust[1],adjust[2])">{{adjust[2]}}
+    </div>
+
+
+</div>
 
 
 <script src="./vue.js"></script>
