@@ -7,37 +7,77 @@
 
 
 </head>
-<body id="body">
+<body id="body" style="padding: 40px">
 
 
-IchiColor(<input v-model="colors[0]" type="text" class="exmo_input_text" list="team_list">) =
-{{colors[0]|ichiColor|json}}
-
-<div>
-    H: <input v-model="colors[1]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">
-    S <input v-model="colors[2]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">
-    V <input v-model="colors[3]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">
+<!--IchiColor(<input v-model="colors[0]" type="text" class="exmo_input_text" list="team_list">) =-->
+<!--{{colors[0]|ichiColor|json}}-->
 
 
+
+<div style="width: 100px; height: 20px; background: {{scolor1.hex}};"></div>
 
 <div>
-    {{scolor1 |json}}<br>
-    {{scolor1.hex()}}<br>
-    {{scolor1._getHsv()|json}} <br>
-    <div style="width: 100px; height: 20px; background: {{scolor1.hex()}};"></div>
+
+    R:<input v-model="scolor1.r" type="text" class="exmo_input_text">
+    G:<input v-model="scolor1.g" type="text" class="exmo_input_text">
+    B:<input v-model="scolor1.b" type="text" class="exmo_input_text">
+    <br>
+    int:<input v-model="scolor1.int" type="text" class="exmo_input_text">
+    hex:<input v-model="scolor1.hex" type="text" class="exmo_input_text">
+
+    <br> <br>
+    H:<input  max="360" min="0"  v-model="scolor1.hsv.h" type="range" class="exmo_range" >{{scolor1.hsv.h}}
+    <br>
+    S:<input  max="100" min="0"  v-model="scolor1.hsv.s" type="range" class="exmo_range" >{{scolor1.hsv.s}}
+    <br>
+    V:<input  max="100" min="0"  v-model="scolor1.hsv.v" type="range" class="exmo_range" >{{scolor1.hsv.v}}
+
+    <br> <br>
+    H:<input  max="360" min="0"  v-model="scolor1.hsl.h" type="range" class="exmo_range" >{{scolor1.hsl.h}}
+    <br>
+    S:<input  max="100" min="0"  v-model="scolor1.hsl.s" type="range" class="exmo_range" >{{scolor1.hsl.s}}
+    <br>
+    L:<input  max="100" min="0"  v-model="scolor1.hsl.l" type="range" class="exmo_range" >{{scolor1.hsl.l}}
+
+    <br> <br>
+    H:<input  max="360" min="0"  v-model="scolor1.hwb.h" type="range" class="exmo_range" >{{scolor1.hwb.h}}
+    <br>
+    W:<input  max="100" min="0"  v-model="scolor1.hwb.w" type="range" class="exmo_range" >{{scolor1.hwb.w}}
+    <br>
+    B:<input  max="100" min="0"  v-model="scolor1.hwb.b" type="range" class="exmo_range" >{{scolor1.hwb.b}}
 </div>
+{{scolor1|json}}
 
 
-    <div>
-        色相： <input v-model="adjust[0]" type="range" class="exmo_range" v-on:change="scolor1.adjust_hueSaturation(adjust[0],adjust[1],adjust[2])">{{adjust[0]}}
-        <br>
-        饱和度： <input v-model="adjust[1]" type="range" class="exmo_range"v-on:change="scolor1.adjust_hueSaturation(adjust[0],adjust[1],adjust[2])">{{adjust[1]}}
-        <br>
-        明度： <input v-model="adjust[2]" type="range" class="exmo_range" v-on:change="scolor1.adjust_hueSaturation(adjust[0],adjust[1],adjust[2])">{{adjust[2]}}
-    </div>
 
 
-</div>
+
+<!--<div>-->
+    <!--H: <input v-model="colors[1]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">-->
+    <!--S <input v-model="colors[2]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">-->
+    <!--V <input v-model="colors[3]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">-->
+
+
+
+<!--<div>-->
+    <!--{{scolor1 |json}}<br>-->
+    <!--{{scolor1.hex()}}<br>-->
+    <!--{{scolor1._getHsv()|json}} <br>-->
+    <!--<div style="width: 100px; height: 20px; background: {{scolor1.hex()}};"></div>-->
+<!--</div>-->
+
+
+    <!--<div>-->
+        <!--色相： <input value="0" max="180" min="-180"  v-model="adjust[0]" type="range" class="exmo_range" v-on:change="scolor1.adjust_hueSaturation(adjust[0])">{{adjust[0]}}-->
+        <!--<br>-->
+        <!--饱和度： <input value="0"  max="100" min="-100" v-model="adjust[1]" type="range" class="exmo_range"v-on:change="scolor1.adjust_hueSaturation(null,adjust[1])">{{adjust[1]}}-->
+        <!--<br>-->
+        <!--明度： <input value="0"  max="100" min="-100" v-model="adjust[2]" type="range" class="exmo_range" v-on:change="scolor1.adjust_hueSaturation(null,null,adjust[2])">{{adjust[2]}}-->
+    <!--</div>-->
+
+
+<!--</div>-->
 
 
 <script src="./vue.js"></script>

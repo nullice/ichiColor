@@ -42,97 +42,13 @@ var IchiColor = function (in_color)
 
     if (_new_mode) //构造函数模式
     {
-        if (arguments.length == 0)//无参数
+        if (this.__initialized === false)
         {
-            this.r = 0;
-            this.g = 0;
-            this.b = 0;
-        }
-        else if (arguments.length === 1)
-        {
-            var _string_mod
-            if (arguments[0].constructor === String)
-            {
-                if (arguments[0][0] === "#")
-                {
-                    if (arguments[0].length === 4)
-                    {
-                        var _hex3 = Number.parseInt(arguments[0].slice(1), 16);
-                        this.r = (_hex3>> 8 & 0xf) | (_hex3 >> 4 & 0x0f0) // 17
-                        this.g = (_hex3 >> 4 & 0xf) | (_hex3 & 0xf0) // 34
-                        this.b = ((_hex3 & 0xf) << 4) | (_hex3 & 0xf) // 51
-                    }
-                    else if (arguments[0].length === 7)
-                    {
-                        arguments[0] = Number.parseInt(arguments[0].slice(1), 16);
-                        _string_mod = "number";
-                    }
-
-
-                }
-                else if (arguments[0] == +arguments[0])
-                {
-                    _string_mod = "number";
-                    arguments[0] = +arguments[0];
-                }
-            }
-            if (arguments[0].constructor === Number || _string_mod == "number")
-            {
-
-                this.r = arguments[0] >> 16;
-                this.g = (arguments[0] >> 8) & 0xff;
-                this.b = arguments[0] & 0xff;
-            }
-            else if (Array.isArray(arguments[0])) // IchiColor([r,g,b])
-            {
-                if (arguments[0].length == 3)
-                {
-                    this.r = arguments[0][0];
-                    this.g = arguments[0][1];
-                    this.b = arguments[0][2];
-                }
-            }
-            else if (arguments[0].constructor === Object)  // IchiColor({r:r, g:g, b:b})
-            {
-                if (arguments[0]["r"] != undefined)
-                {
-                    this.r = arguments[0]["r"];
-
-                } else if (arguments[0]["red"] != undefined)
-                {
-                    this.r = arguments[0]["red"];
-                }
-
-                if (arguments[0]["g"] != undefined)
-                {
-                    this.g = arguments[0]["g"];
-
-                } else if (arguments[0]["green"] != undefined)
-                {
-                    this.g = arguments[0]["green"];
-                }
-                else if (arguments[0]["grain"] != undefined)
-                {
-                    this.g = arguments[0]["grain"];
-                }
-
-                if (arguments[0]["b"] != undefined)
-                {
-                    this.b = arguments[0]["b"];
-
-                } else if (arguments[0]["blue"] != undefined)
-                {
-                    this.b = arguments[0]["blue"];
-                }
-            }
-
-        }
-        else if (arguments.length === 3)
-        {
-
+            this.initSetterGetter();
+            this.__initialized = true;
         }
 
-
+        this.set.apply(this, arguments)
     }
     else //工厂函数模式
     {
@@ -142,11 +58,46 @@ var IchiColor = function (in_color)
     }
 
 
-    console.log(this.r, this.g, this.b)
+    // console.log(this.r, this.g, this.b)
     return this;
 }
 
+/**
+ * 对象判断标识
+ * @type {boolean}
+ * @private
+ */
 IchiColor.prototype.__isIchiColor = true;
+
+/**
+ * 是否已初始化
+ * @type {boolean}
+ * @private
+ */
+IchiColor.prototype.__initialized = false;
+
+/**
+ * 是否暂停 r、g、b 的 setter 的 update 动作
+ * @type {boolean}
+ * @private
+ */
+IchiColor.prototype.__pauseUpdate = false;
+
+/**
+ * 是否暂停 r、g、b 的 setter 的 update Hsv 的动作
+ * @type {boolean}
+ * @private
+ */
+IchiColor.prototype.__pauseUpdate_Hsv = false;
+
+
+/**
+ * 是否暂停 r、g、b 的 setter 的 update Hwb 的动作
+ * @type {boolean}
+ * @private
+ */
+IchiColor.prototype.__pauseUpdate_Hwb = false;
+
 
 IchiColor.prototype._rgb = function ()
 {
@@ -154,10 +105,1186 @@ IchiColor.prototype._rgb = function ()
 };
 
 
-IchiColor.prototype.hex = function ()
+IchiColor.prototype._gethex = function ()
+{
+    var r = this.r.toString(16);
+    var g = this.g.toString(16);
+    var b = this.b.toString(16);
+    var hex = '#';
+    if (r.length == 1)
+    {
+        hex = hex + "0" + r;
+    } else
+    {
+        hex = hex + r;
+    }
+
+    if (g.length == 1)
+    {
+        hex = hex + "0" + g;
+    } else
+    {
+        hex = hex + g;
+    }
+
+    if (b.length == 1)
+    {
+        hex = hex + "0" + b;
+    } else
+    {
+        hex = hex + b;
+    }
+
+
+    return hex;
+};
+
+IchiColor.prototype._getRGB = function ()
 {
     return {r: this.r, g: this.g, b: this.b};
 };
+
+IchiColor.prototype._getRedGreenBlue = function ()
+{
+    return {red: this.r, green: this.g, blue: this.b};
+};
+
+IchiColor.prototype._getRedGrainBlue = function ()
+{
+    return {red: this.r, grain: this.g, blue: this.b};
+};
+
+/**
+ *
+ * @param hue 色相调整值 [-180,180]
+ * @param saturation 色相调整值  [-100,100]
+ * @param brightness 色相调整值  [-100,100]
+ * @returns {{red: (*|number), grain: (number|*), blue: (number|*)}}
+ */
+IchiColor.prototype.adjust_hueSaturation = function (hue, saturation, brightness)
+{
+    console.log(hue, saturation, brightness)
+    var hsv = this._getHsv();
+
+    if (hue != undefined)
+    {
+        hsv.h = hsv.h + hue;
+        if (hsv.h < 0)
+        {
+            hsv.h = 360 - hsv.h;
+        }
+        if (hsv.h > 360)
+        {
+            hsv.h = hsv.h - 360;
+        }
+
+    }
+
+    if (saturation != undefined)
+    {
+        hsv.s = hsv.s + saturation;
+        if (hsv.s < 0)
+        {
+            hsv.s = 0;
+        }
+        if (hsv.s > 100)
+        {
+            hsv.s = 100;
+        }
+    }
+
+    if (brightness != undefined)
+    {
+        hsv.v = hsv.v + brightness;
+        if (hsv.v < 0)
+        {
+            hsv.v = 0;
+        }
+        if (hsv.v > 100)
+        {
+            hsv.v = 100;
+        }
+    }
+
+    this._setFromHsv(hsv);
+    return this;
+};
+
+
+IchiColor.prototype._getHsl = function ()
+{
+    console.log("_getHsl()")
+    var rgb = _normalizArray([this.r, this.g, this.b], 0, 255, 1);
+
+    var r, g, b, h, s, l, d, max, min;
+
+    r = rgb[0];
+    g = rgb[1];
+    b = rgb[2];
+
+    max = Math.max(r, g, b);
+    min = Math.min(r, g, b);
+    l = (max + min) / 2;
+
+    if (max === min)
+    {
+        h = s = 0; // achromatic
+    }
+    else
+    {
+        d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+        switch (max)
+        {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+
+        h /= 6;
+    }
+
+    h = h * 360;
+    s = s * 100;
+    l = l * 100;
+
+
+    h = Math.round(h);
+    s = Math.round(s);
+    l = Math.round(l);
+    return {h: h, s: s, l: l};
+};
+
+
+IchiColor.prototype._getHsv = function ()
+{
+    console.log("_getHsv()")
+    var max, min, h, s, v, d,
+        r = _normaliz(this.r, 0, 255, 1),
+        g = _normaliz(this.g, 0, 255, 1),
+        b = _normaliz(this.b, 0, 255, 1);
+
+    max = Math.max(r, g, b);
+    min = Math.min(r, g, b);
+    v = max;
+
+    d = max - min;
+    s = max === 0 ? 0 : d / max;
+
+    if (max === min)
+    {
+        h = 0;
+    }
+    else
+    {
+        switch (max)
+        {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+        h /= 6;
+    }
+
+    h = Math.round(h * 360);
+    s = Math.round(s * 100);
+    v = Math.round(v * 100);
+
+    return {h: h, s: s, v: v};
+};
+
+
+IchiColor.prototype._getHwb = function ()
+{
+    console.log("_getHwb()")
+    var HSV = _RGB_to_HSV([this.r, this.g, this.b]);
+
+    var H, W, B;
+
+    H = HSV[0];
+    W = Math.round(((100 - HSV[1]) * HSV[2]) / 100);
+    B = Math.round(100 - HSV[2]);
+
+    return {h: H, w: W, b: B};
+
+}
+
+
+IchiColor.prototype._setFromHsv = function (HSV)
+{
+    console.log("_setFromHsv()", HSV)
+    var r, g, b, i, f, p, q, t;
+
+    var
+        s = _normaliz(HSV.s, 0, 100, 1),
+        v = _normaliz(HSV.v, 0, 100, 1),
+        h = HSV.h / 60;
+
+    i = Math.floor(h);
+    f = h - i;
+    p = v * (1 - s);
+    q = v * (1 - (s * f));
+    t = v * (1 - (s * (1 - f)));
+
+    switch (i)
+    {
+        case 0 :
+        {
+            r = v;
+            g = t;
+            b = p;
+            break;
+        }
+        case 1 :
+        {
+            r = q;
+            g = v;
+            b = p;
+            break;
+        }
+        case 2:
+        {
+            r = p;
+            g = v;
+            b = t;
+            break;
+        }
+        case 3:
+        {
+            r = p;
+            g = q;
+            b = v;
+            break;
+        }
+        case 4:
+        {
+            r = t;
+            g = p;
+            b = v;
+            break;
+        }
+        case 5:
+        {
+            r = v;
+            g = p;
+            b = q;
+            break;
+        }
+    }
+
+
+    var rgb = _normaOutRGB(_normalizArray([r, g, b], 0, 1, 255));
+
+    this.__pauseUpdate = true;
+    this.r = rgb[0];
+    this.g = rgb[1];
+    this.b = rgb[2];
+    this.__pauseUpdate = false;
+    this.__pauseUpdate_Hsv = true;
+    this.__undateValue();
+    this.__pauseUpdate_Hsv = false;
+    return this;
+}
+
+
+IchiColor.prototype._setFromHwb = function (HWB)
+{
+    console.log("_setFromHwb()", HWB)
+
+    var H, S, V;
+
+
+    H = HWB.h;
+
+
+    if (HWB.b == 100)
+    {
+        var de = 0
+    } else
+    {
+        var de = HWB.w / (100 - HWB.b)
+    }
+
+
+    S = 100 - (de * 100);
+    V = 100 - HWB.b;
+
+    var rgb = _HSV_to_RGB([H, S, V]);
+
+
+    this.__pauseUpdate = true;
+    this.r = rgb[0];
+    this.g = rgb[1];
+    this.b = rgb[2];
+    this.__pauseUpdate = false;
+    this.__pauseUpdate_Hwb = true;
+    this.__undateValue();
+    this.__pauseUpdate_Hwb = false;
+    return this;
+
+
+}
+
+function _HSV_to_RGB(HSV)
+{
+    var r, g, b, i, f, p, q, t;
+
+    // h = h / 360;
+    if (v === 0)
+    {
+        return [0, 0, 0];
+    }
+
+    var
+        s = _normaliz(HSV[1], 0, 100, 1),
+        v = _normaliz(HSV[2], 0, 100, 1),
+        h = HSV[0] / 60;
+
+    i = Math.floor(h);
+    f = h - i;
+    p = v * (1 - s);
+    q = v * (1 - (s * f));
+    t = v * (1 - (s * (1 - f)));
+
+    switch (i)
+    {
+        case 0 :
+        {
+            r = v;
+            g = t;
+            b = p;
+            break;
+        }
+        case 1 :
+        {
+            r = q;
+            g = v;
+            b = p;
+            break;
+        }
+        case 2:
+        {
+            r = p;
+            g = v;
+            b = t;
+            break;
+        }
+        case 3:
+        {
+            r = p;
+            g = q;
+            b = v;
+            break;
+        }
+        case 4:
+        {
+            r = t;
+            g = p;
+            b = v;
+            break;
+        }
+        case 5:
+        {
+            r = v;
+            g = p;
+            b = q;
+            break;
+        }
+    }
+
+
+    return _normaOutRGB(_normalizArray([r, g, b], 0, 1, 255));
+}
+function _RGB_to_HSV(rgb)
+{
+    var max, min, h, s, v, d,
+        r = _normaliz(rgb[0], 0, 255, 1),
+        g = _normaliz(rgb[1], 0, 255, 1),
+        b = _normaliz(rgb[2], 0, 255, 1);
+
+    max = Math.max(r, g, b);
+    min = Math.min(r, g, b);
+    v = max;
+
+    d = max - min;
+    s = max === 0 ? 0 : d / max;
+
+    if (max === min)
+    {
+        h = 0;
+    }
+    else
+    {
+        switch (max)
+        {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+        h /= 6;
+    }
+
+    h = Math.round(h * 360);
+    s = Math.round(s * 100);
+    v = Math.round(v * 100);
+
+    return [h, s, v];
+}
+
+
+IchiColor.prototype._setFromHsl = function (HSL)
+{
+    console.log("_setFromHsl()", HSL)
+    var
+        h = HSL.h,
+        s = _normaliz(HSL.s, 0, 100, 1),
+        l = _normaliz(HSL.l, 0, 100, 1);
+
+    if (h == undefined)
+    {
+        return [0, 0, 0];
+    }
+
+    var C = (1 - Math.abs((2 * l) - 1)) * s;
+    var hh = h / 60;
+    var temp = C * (1 - Math.abs((hh % 2) - 1));
+
+    hh = Math.floor(hh);
+    var r;
+    var g;
+    var b;
+
+    if (hh === 0)
+    {
+        r = C;
+        g = temp;
+        b = 0;
+    }
+    else if (hh === 1)
+    {
+        r = temp;
+        g = C;
+        b = 0;
+    }
+    else if (hh === 2)
+    {
+        r = 0;
+        g = C;
+        b = temp;
+    }
+    else if (hh === 3)
+    {
+        r = 0;
+        g = temp;
+        b = C;
+    }
+    else if (hh === 4)
+    {
+        r = temp;
+        g = 0;
+        b = C;
+    }
+    else if (hh === 5)
+    {
+        r = C;
+        g = 0;
+        b = temp;
+    }
+
+    var CC = l - (C / 2);
+    r += CC;
+    g += CC;
+    b += CC;
+
+    var rgb = _normaOutRGB(_normalizArray([r, g, b], 0, 1, 255));
+
+    this.__pauseUpdate = true;
+    this.r = rgb[0];
+    this.g = rgb[1];
+    this.b = rgb[2];
+    this.__pauseUpdate = false;
+    this.__pauseUpdate_Hsl = true;
+    this.__undateValue();
+    this.__pauseUpdate_Hsl = false;
+    return this;
+}
+
+
+function _normalizArray(inArray, inMin, inMax, newMax)
+{
+    for (var i = 0; i < inArray.length; i++)
+    {
+        inArray[i] = _normaliz(inArray[i], inMin, inMax, newMax);
+    }
+    return inArray;
+}
+
+function _normaliz(inNumber, inMin, inMax, newMax)
+{
+    var newNumber = 0;
+
+    if (arguments.length == 4)
+    {
+        newNumber = (inNumber - inMin) / (inMax - inMin);
+        newNumber = newNumber * newMax;
+    }
+    else
+    {
+        newNumber = arguments[0] / 255;
+    }
+
+    return newNumber;
+}
+
+function _normaOutRGB(inArray)
+{
+
+    var z = 0
+    for (z = 0; z < inArray.length; z++)
+    {
+        inArray[z] = Math.round(inArray[z]);
+        if (inArray[z] < 0 || inArray[z] == -0)
+        {
+            inArray[z] = 0;
+        }
+    }
+    return inArray;
+}
+
+
+/**
+ * 返回整数颜色值
+ * Color("#FFFFFF").int() => 16777215
+ * @returns {number}
+ */
+IchiColor.prototype.int = function ()
+{
+    var int = 0;
+
+    int = (this.r << 16) + ( this.g << 8) + this.b;
+    return int;
+}
+
+
+/**
+ * 根据参数设置颜色
+ * @param  args
+ * @returns {IchiColor}
+ */
+IchiColor.prototype.set = function (args)
+{
+    if (arguments.length == 0)//无参数
+    {
+        this.r = 0;
+        this.g = 0;
+        this.b = 0;
+        this.alpha = 1;
+    }
+    else if (arguments.length === 1)
+    {
+        var _string_mod
+        if (arguments[0].constructor === String)
+        {
+            if (arguments[0][0] === "#")
+            {
+                if (arguments[0].length === 4)
+                {
+                    var _hex3 = Number.parseInt(arguments[0].slice(1), 16);
+                    this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0)
+                    this.g = (_hex3 >> 4 & 0xf) | (_hex3 & 0xf0)
+                    this.b = ((_hex3 & 0xf) << 4) | (_hex3 & 0xf)
+                }
+                else if (arguments[0].length === 7)
+                {
+                    arguments[0] = Number.parseInt(arguments[0].slice(1), 16);
+                    _string_mod = "number";
+                }
+
+
+            }
+            else if (arguments[0] == +arguments[0])
+            {
+                _string_mod = "number";
+                arguments[0] = +arguments[0];
+            }
+        }
+        if (arguments[0].constructor === Number || _string_mod == "number")
+        {
+
+            this.r = arguments[0] >> 16;
+            this.g = (arguments[0] >> 8) & 0xff;
+            this.b = arguments[0] & 0xff;
+        }
+        else if (Array.isArray(arguments[0])) // IchiColor([r,g,b])
+        {
+            if (arguments[0].length == 3)
+            {
+                this.r = arguments[0][0];
+                this.g = arguments[0][1];
+                this.b = arguments[0][2];
+            }
+        }
+        else if (arguments[0].constructor === Object)  // IchiColor({r:r, g:g, b:b, alpha:alpha})
+        {
+            if (arguments[0]["r"] != undefined)
+            {
+                this.r = arguments[0]["r"];
+
+            } else if (arguments[0]["red"] != undefined)
+            {
+                this.r = arguments[0]["red"];
+            }
+
+            if (arguments[0]["g"] != undefined)
+            {
+                this.g = arguments[0]["g"];
+
+            } else if (arguments[0]["green"] != undefined)
+            {
+                this.g = arguments[0]["green"];
+            }
+            else if (arguments[0]["grain"] != undefined)
+            {
+                this.g = arguments[0]["grain"];
+            }
+
+            if (arguments[0]["b"] != undefined)
+            {
+                this.b = arguments[0]["b"];
+
+            } else if (arguments[0]["blue"] != undefined)
+            {
+                this.b = arguments[0]["blue"];
+            }
+
+            if (arguments[0]["a"] != undefined)
+            {
+                this.alpha = arguments[0]["a"];
+
+            } else if (arguments[0]["alpha"] != undefined)
+            {
+                this.alpha = arguments[0]["alpha"];
+            }
+
+        }
+
+    }
+    else if (arguments.length === 3)
+    {
+
+    }
+
+    return this;
+}
+
+
+IchiColor.prototype.initSetterGetter = function ()
+{
+    this._r = 0;
+    this._r_intPart = 0;
+    this._r_hexChar = "00";
+    this._g = 0;
+    this._g_intPart = 0;
+    this._g_hexChar = "00";
+    this._b = 0;
+    this._b_intPart = 0;
+    this._b_hexChar = "00";
+
+    this._rgbInt = 0;
+    this._rgbHex = "#000000";
+
+    Object.defineProperty(this, "r",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__colorValueRange(x, 0, 255);
+                this._r = x;
+                this._r_intPart = x << 16;
+                var char = x.toString(16);
+                if (char.length == 1)
+                {
+                    char = "0" + char;
+                }
+                this._r_hexChar = char;
+                this.__undateValue();
+
+            },
+            get: function ()
+            {
+                return this._r;
+            }
+        }
+    );
+
+    Object.defineProperty(this, "g",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__colorValueRange(x, 0, 255);
+                this._g = x;
+                this._g_intPart = x << 8;
+                var char = x.toString(16);
+                if (char.length == 1)
+                {
+                    char = "0" + char;
+                }
+                this._g_hexChar = char;
+                this.__undateValue();
+
+            },
+            get: function ()
+            {
+                return this._g;
+            }
+        }
+    );
+
+    Object.defineProperty(this, "b",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__colorValueRange(x, 0, 255);
+                this._b = x;
+                this._b_intPart = x;
+                var char = x.toString(16);
+                if (char.length == 1)
+                {
+                    char = "0" + char;
+                }
+                this._b_hexChar = char;
+                this.__undateValue();
+            },
+            get: function ()
+            {
+                return this._b;
+            }
+        }
+    );
+
+    Object.defineProperty(this, "int",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__colorValueRange(x, 0, 16777215);
+                this.__pauseUpdate = true;
+                this.r = x >> 16;
+                this.g = (x >> 8) & 0xff;
+                this.b = x & 0xff;
+                this.__pauseUpdate = false;
+                this.__undateValue()
+            },
+            get: function ()
+            {
+                return this._rgbInt;
+            }
+        }
+    );
+
+    Object.defineProperty(this, "hex",
+        {
+            set: function (x)
+            {
+                if (x[0] === "#")
+                {
+                    if (x.length === 4)
+                    {
+                        var _hex3 = Number.parseInt(x.slice(1), 16);
+                        this.__pauseUpdate = true;
+                        this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0)
+                        this.g = (_hex3 >> 4 & 0xf) | (_hex3 & 0xf0)
+                        this.b = ((_hex3 & 0xf) << 4) | (_hex3 & 0xf)
+                        this.__pauseUpdate = false;
+                        this.__undateValue()
+
+                    }
+                    else if (x.length === 7)
+                    {
+                        x = Number.parseInt(arguments[0].slice(1), 16);
+                        this.int = x;
+                    }
+                }
+
+            },
+            get: function ()
+            {
+                return this._rgbHex;
+            }
+        }
+    );
+
+    //HSV------------------------------------------------------------------
+    this.__use_hsv = false;
+    this.__freshly_hsv = false;
+    this.hsv = {
+        _h: 0,
+        _s: 0,
+        _v: 0,
+    };
+
+    Object.defineProperty(this.hsv, "__obSelf", {value: this, enumerable: false});
+
+    Object.defineProperty(this.hsv, "h",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__obSelf.__colorValueRange(x, 0, 360);
+                if (x == 360)
+                {
+                    x = 0;
+                }
+                this._h = x;
+                this.__obSelf._setFromHsv({h: this._h, s: this._s, v: this._v})
+            },
+            get: function ()
+            {
+                if (this.__obSelf.__use_hsv != true)
+                {
+                    this.__obSelf.__use_hsv = true;
+                }
+                if (this.__obSelf.__freshly_hsv != true)
+                {
+                    this.__obSelf.__undatePart_Hsv();
+                }
+                return this._h;
+            }
+        }
+    );
+
+
+    Object.defineProperty(this.hsv, "s",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__obSelf.__colorValueRange(x, 0, 100);
+                this._s = x;
+                this.__obSelf._setFromHsv({h: this._h, s: this._s, v: this._v})
+            },
+            get: function ()
+            {
+                if (this.__obSelf.__use_hsv != true)
+                {
+                    this.__obSelf.__use_hsv = true;
+                }
+                if (this.__obSelf.__freshly_hsv != true)
+                {
+                    this.__obSelf.__undatePart_Hsv();
+                }
+                return this._s;
+            }
+        }
+    );
+
+
+    Object.defineProperty(this.hsv, "v",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__obSelf.__colorValueRange(x, 0, 100);
+                this._v = x;
+                this.__obSelf._setFromHsv({h: this._h, s: this._s, v: this._v})
+            },
+            get: function ()
+            {
+                if (this.__obSelf.__use_hsv != true)
+                {
+                    this.__obSelf.__use_hsv = true;
+                }
+                if (this.__obSelf.__freshly_hsv != true)
+                {
+                    this.__obSelf.__undatePart_Hsv();
+                }
+                return this._v;
+            }
+        }
+    );
+
+    //HSL------------------------------------------------------------------
+    this.__use_hsl = false;
+    this.__freshly_hsl = false;
+    this.hsl = {
+        _h: 0,
+        _s: 0,
+        _l: 0,
+    };
+    Object.defineProperty(this.hsl, "__obSelf", {value: this, enumerable: false});
+
+    Object.defineProperty(this.hsl, "h",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__obSelf.__colorValueRange(x, 0, 360);
+                if (x == 360)
+                {
+                    x = 0;
+                }
+                this._h = x;
+                this.__obSelf._setFromHsl({h: this._h, s: this._s, l: this._l})
+            },
+            get: function ()
+            {
+                if (this.__obSelf.__use_hsl != true)
+                {
+                    this.__obSelf.__use_hsl = true;
+                }
+                if (this.__obSelf.__freshly_hsl != true)
+                {
+                    this.__obSelf.__undatePart_Hsl();
+                }
+                return this._h;
+            }
+        }
+    );
+    Object.defineProperty(this.hsl, "s",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__obSelf.__colorValueRange(x, 0, 100);
+                this._s = x;
+                this.__obSelf._setFromHsl({h: this._h, s: this._s, l: this._l})
+            },
+            get: function ()
+            {
+                if (this.__obSelf.__use_hsl != true)
+                {
+                    this.__obSelf.__use_hsl = true;
+                }
+                if (this.__obSelf.__freshly_hsl != true)
+                {
+                    this.__obSelf.__undatePart_Hsl();
+                }
+                return this._s;
+            }
+        }
+    );
+    
+    Object.defineProperty(this.hsl, "l",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__obSelf.__colorValueRange(x, 0, 100);
+                this._l = x;
+                this.__obSelf._setFromHsl({h: this._h, s: this._s, l: this._l})
+            },
+            get: function ()
+            {
+                if (this.__obSelf.__use_hsl != true)
+                {
+                    this.__obSelf.__use_hsl = true;
+                }
+                if (this.__obSelf.__freshly_hsl != true)
+                {
+                    this.__obSelf.__undatePart_Hsl();
+                }
+                return this._l;
+            }
+        }
+    );
+    //HWB------------------------------------------------------------------
+    this.__use_hwb = false;
+    this.__freshly_hwb = false;
+    this.hwb = {
+        _h: 0,
+        _w: 0,
+        _b: 0,
+    };
+
+    Object.defineProperty(this.hwb, "__obSelf", {value: this, enumerable: false});
+
+    Object.defineProperty(this.hwb, "h",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__obSelf.__colorValueRange(x, 0, 360);
+                if (x == 360)
+                {
+                    x = 0;
+                }
+                this._h = x;
+                this.__obSelf._setFromHwb({h: this._h, w: this._w, b: this._b})
+            },
+            get: function ()
+            {
+                if (this.__obSelf.__use_hwb != true)
+                {
+                    this.__obSelf.__use_hwb = true;
+                }
+                if (this.__obSelf.__freshly_hwb != true)
+                {
+                    this.__obSelf.__undatePart_Hwb();
+                }
+                return this._h;
+            }
+        }
+    );
+    Object.defineProperty(this.hwb, "w",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__obSelf.__colorValueRange(x, 0, 100);
+                this._w = x;
+                this.__obSelf._setFromHwb({h: this._h, w: this._w, b: this._b})
+            },
+            get: function ()
+            {
+                if (this.__obSelf.__use_hwb != true)
+                {
+                    this.__obSelf.__use_hwb = true;
+                }
+                if (this.__obSelf.__freshly_hwb != true)
+                {
+                    this.__obSelf.__undatePart_Hwb();
+                }
+
+                return this._w;
+            }
+        }
+    );
+
+    Object.defineProperty(this.hwb, "b",
+        {
+            set: function (x)
+            {
+                x = Number.parseInt(x);
+                x = this.__obSelf.__colorValueRange(x, 0, 100);
+                this._b = x;
+                this.__obSelf._setFromHwb({h: this._h, w: this._w, b: this._b})
+            },
+            get: function ()
+            {
+                if (this.__obSelf.__use_hwb != true)
+                {
+                    this.__obSelf.__use_hwb = true;
+                }
+                if (this.__obSelf.__freshly_hwb != true)
+                {
+                    this.__obSelf.__undatePart_Hwb();
+                }
+
+                return this._b;
+
+
+            }
+        }
+    );
+
+}
+
+IchiColor.prototype.__undateValue = function ()
+{
+    if (this.__pauseUpdate)
+    {
+        return;
+    }
+
+    this._rgbInt = this._r_intPart + this._g_intPart + this._b_intPart;
+    this._rgbHex = "#" + this._r_hexChar + this._g_hexChar + this._b_hexChar;
+
+
+    this.__freshly_hsl = false;
+    this.__freshly_hsv = false;
+    this.__freshly_hwb = false;
+
+
+    if (this.__use_hsv)
+    {
+        if (this.__pauseUpdate_Hsv != true)
+        {
+            this.__undatePart_Hsv();
+        }
+    }
+
+
+    if (this.__use_hsl)
+    {
+        if (this.__pauseUpdate_Hsl != true)
+        {
+            this.__undatePart_Hsl();
+        }
+    }
+
+
+    if (this.__use_hsl)
+    {
+        if (this.__pauseUpdate_Hwb != true)
+        {
+            this.__undatePart_Hwb();
+        }
+    }
+}
+
+
+IchiColor.prototype.__undatePart_Hsv = function ()
+{
+    var hsv = this._getHsv();
+    this.hsv._h = hsv.h;
+    this.hsv._s = hsv.s;
+    this.hsv._v = hsv.v;
+    this.__freshly_hsv = true;
+}
+
+IchiColor.prototype.__undatePart_Hsl = function ()
+{
+    var hsl = this._getHsl();
+    this.hsl._h = hsl.h;
+    this.hsl._s = hsl.s;
+    this.hsl._l = hsl.l;
+    this.__freshly_hsl = true;
+}
+
+
+IchiColor.prototype.__undatePart_Hwb = function ()
+{
+    var hwb = this._getHwb();
+    this.hwb._h = hwb.h;
+    this.hwb._w = hwb.w;
+    this.hwb._b = hwb.b;
+    this.__freshly_hwb = true;
+}
+
+
+IchiColor.prototype.__colorValueRange = function (value, min, max)
+{
+
+    if (value > max)
+    {
+        return max;
+    } else if (value < min)
+    {
+        return min;
+    }
+    return value;
+}
 
 export default IchiColor;
 
