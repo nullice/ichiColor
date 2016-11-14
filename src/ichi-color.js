@@ -1293,8 +1293,9 @@ IchiColor.prototype.__undatePart_Hsv = function ()
 
 IchiColor.prototype.__undatePart_Hsl = function ()
 {
-    // console.log("__undatePart_Hsl")
+     // console.log("__undatePart_Hsl")
     var hsl = this._getHsl();
+    // console.log(hsl)
     this.hsl._h = hsl.h;
     this.hsl._s = hsl.s;
     this.hsl._l = hsl.l;
