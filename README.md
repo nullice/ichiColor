@@ -145,7 +145,12 @@ newColor2.hex   //"#f8c5a0"
 
 
 
+## Other
 
+如果想要更多的功能，如色彩空间转换、色差计算，可以使用我另一个计算功能更多的色彩库：
+[ColorRNA](https://github.com/nullice/ColorRNA/)
+
+本来想叫 oneColor 的无奈名字被先用了，只好叫 ichiColor 了
 
 
 
