@@ -33,7 +33,7 @@ var mainVue = new Vue({
 
 window.mainVue = mainVue;
 
-TEST_all()
+// TEST_all()
 function TEST_all()
 {
     _test_hex();
