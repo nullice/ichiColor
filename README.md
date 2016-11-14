@@ -154,7 +154,8 @@ newColor2.hex   //"#f8c5a0"
 
 
 
-
+## License
+MIT
 
 
 
