@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5af95683-9d3f-4f10-a8cf-dd327f5b93f7" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/vs/one-color.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/vue.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/ColorRNA.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/demo-main.js" afterPath="$PROJECT_DIR$/demo/demo-main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ichi-color.js" afterPath="$PROJECT_DIR$/src/ichi-color.js" />
@@ -364,7 +367,7 @@
       <updated>1478521671009</updated>
       <workItem from="1478521672744" duration="7680000" />
       <workItem from="1478530533198" duration="64706000" />
-      <workItem from="1479022384835" duration="15244000" />
+      <workItem from="1479022384835" duration="15380000" />
     </task>
     <task id="LOCAL-00001" summary="demo&#10;">
       <created>1478568355699</created>
@@ -419,7 +422,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87630000" />
+    <option name="totallyTimeSpent" value="87766000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
