@@ -27,6 +27,14 @@
     hex:<input v-model="scolor1.hex" type="text" class="exmo_input_text">
 
     <br> <br>
+    R:<input  max="255" min="0"  v-model="scolor1.r" type="range" class="exmo_range" >{{scolor1.r}}
+    <br>
+    G:<input  max="255" min="0"  v-model="scolor1.g" type="range" class="exmo_range" >{{scolor1.g}}
+    <br>
+    B:<input  max="255" min="0"  v-model="scolor1.b" type="range" class="exmo_range" >{{scolor1.b}}
+
+
+    <br> <br>
     H:<input  max="360" min="0"  v-model="scolor1.hsv.h" type="range" class="exmo_range" >{{scolor1.hsv.h}}
     <br>
     S:<input  max="100" min="0"  v-model="scolor1.hsv.s" type="range" class="exmo_range" >{{scolor1.hsv.s}}

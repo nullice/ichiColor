@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="demo.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="demo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/demo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+            <state relative-caret-position="504">
+              <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -50,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ColorRNA.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ColorRNA.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lib/ColorRNA.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="1754" column="28" selection-start-line="1754" selection-start-column="28" selection-end-line="1754" selection-end-column="28" />
+            <state relative-caret-position="702">
+              <caret line="1783" column="0" selection-start-line="1783" selection-start-column="0" selection-end-line="1783" selection-end-column="0" />
               <folding>
                 <element signature="e#42127#42918#0" expanded="false" />
                 <element signature="e#42968#44104#0" expanded="false" />
@@ -346,7 +346,7 @@
       <updated>1478521671009</updated>
       <workItem from="1478521672744" duration="7680000" />
       <workItem from="1478530533198" duration="64706000" />
-      <workItem from="1479022384835" duration="23881000" />
+      <workItem from="1479022384835" duration="24254000" />
     </task>
     <task id="LOCAL-00001" summary="demo&#10;">
       <created>1478568355699</created>
@@ -401,7 +401,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96267000" />
+    <option name="totallyTimeSpent" value="96640000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -673,19 +673,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/demo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#pre#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ichi-color.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1548">
@@ -700,11 +687,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/ColorRNA.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="1754" column="28" selection-start-line="1754" selection-start-column="28" selection-end-line="1754" selection-end-column="28" />
+        <state relative-caret-position="702">
+          <caret line="1783" column="0" selection-start-line="1783" selection-start-column="0" selection-end-line="1783" selection-end-column="0" />
           <folding>
             <element signature="e#42127#42918#0" expanded="false" />
             <element signature="e#42968#44104#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#pre#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
