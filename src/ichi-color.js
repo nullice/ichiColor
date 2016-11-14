@@ -149,7 +149,7 @@ IchiColor.prototype._gethex = function ()
  */
 IchiColor.prototype.adjust_hueSaturation = function (hue, saturation, brightness)
 {
-    console.log(hue, saturation, brightness)
+    // console.log(hue, saturation, brightness)
     var hsv = this._getHsv();
 
     if (hue != undefined)
@@ -199,7 +199,7 @@ IchiColor.prototype.adjust_hueSaturation = function (hue, saturation, brightness
 
 IchiColor.prototype._getHsl = function ()
 {
-    console.log("_getHsl()")
+    // console.log("_getHsl()")
     var rgb = IchiColor.prototype._normalizArray([this.r, this.g, this.b], 0, 255, 1);
 
     var r, g, b, h, s, l, d, max, min;
@@ -251,7 +251,7 @@ IchiColor.prototype._getHsl = function ()
 
 IchiColor.prototype._getHsv = function ()
 {
-    console.log("_getHsv()")
+    // console.log("_getHsv()")
     var max, min, h, s, v, d,
         r = IchiColor.prototype._normaliz(this.r, 0, 255, 1),
         g = IchiColor.prototype._normaliz(this.g, 0, 255, 1),
@@ -309,7 +309,7 @@ IchiColor.prototype._getHwb = function ()
 
 IchiColor.prototype._setFromHsv = function (HSV)
 {
-    console.log("_setFromHsv()", HSV)
+    // console.log("_setFromHsv()", HSV)
     var r, g, b, i, f, p, q, t;
 
     var
@@ -387,7 +387,7 @@ IchiColor.prototype._setFromHsv = function (HSV)
 
 IchiColor.prototype._setFromHwb = function (HWB)
 {
-    console.log("_setFromHwb()", HWB)
+    // console.log("_setFromHwb()", HWB)
     this.__freshly_hwb = true;
 
     var H, S, V;
@@ -1236,7 +1236,7 @@ IchiColor.prototype.__undateValue = function ()
 
 IchiColor.prototype.__undatePart_Hsv = function ()
 {
-    console.log("__undatePart_Hsv")
+    // console.log("__undatePart_Hsv")
     var hsv = this._getHsv();
     this.hsv._h = hsv.h;
     this.hsv._s = hsv.s;
@@ -1246,7 +1246,7 @@ IchiColor.prototype.__undatePart_Hsv = function ()
 
 IchiColor.prototype.__undatePart_Hsl = function ()
 {
-    console.log("__undatePart_Hsl")
+    // console.log("__undatePart_Hsl")
     var hsl = this._getHsl();
     this.hsl._h = hsl.h;
     this.hsl._s = hsl.s;
@@ -1257,7 +1257,7 @@ IchiColor.prototype.__undatePart_Hsl = function ()
 
 IchiColor.prototype.__undatePart_Hwb = function ()
 {
-    console.log("__undatePart_Hwb")
+    // console.log("__undatePart_Hwb")
     var hwb = this._getHwb();
     this.hwb._h = hwb.h;
     this.hwb._w = hwb.w;
