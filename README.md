@@ -104,7 +104,7 @@ color1.b        //95
 
 另外还可以使用实例上的 set() 方法，其可传入的参数格式和创建实例时的完全一致：
 
- ```
+ ```js
  color1.set("#ff0022")
  color1.set({h: 205, s: 93, v: 37})
  color1.set(16711714)     //(10 进制色彩值) 
@@ -125,13 +125,13 @@ color1.getHWB()           //{h: 205, w: 3, b: 63}
 ```
 这些格式的对象，都可以用来创建颜色实例:
 
-```
+```js
 var color4 = IchiColor({red: 7, grain: 58, blue: 95})
 ```
 
 另外有 2 个方法可以创建 IchiColor 实例的副本：
 
-```
+```js
 var newColor1 = color1.getClone()  // 创建实例颜色的副本
 newColor1.hex   //"#073a5f"
 
