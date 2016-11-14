@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ichiColor Demo</title>
     <link rel="stylesheet" href="./Ex-morphogen/exmo_main.css">
 
 
 </head>
-<body id="body" style="padding: 40px">
+<body id="body" style="padding: 40px 100px">
 
 
 <!--IchiColor(<input v-model="colors[0]" type="text" class="exmo_input_text" list="team_list">) =-->
@@ -15,7 +15,7 @@
 
 
 
-<div style="width: 100px; height: 20px; background: {{scolor1.hex}};"></div>
+<div style="width: 200px; height: 40px; background: {{scolor1.hex}};"></div>
 
 <div>
 
@@ -47,8 +47,10 @@
     <br>
     B:<input  max="100" min="0"  v-model="scolor1.hwb.b" type="range" class="exmo_range" >{{scolor1.hwb.b}}
 </div>
-{{scolor1|json}}
 
+<div class="object" style="font-size: 12px;color: #949494;padding: 30px 0;">
+   <pre     style="font-family: sans-serif;" > {{scolor1|json 4}}</pre>
+</div>
 
 
 

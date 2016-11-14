@@ -541,7 +541,7 @@ IchiColor.prototype._RGB_to_HSV = function (rgb)
 IchiColor.prototype._setFromHsl = function (HSL)
 {
     this.__freshly_hsl = true;
-    console.log("_setFromHsl()", HSL)
+    // console.log("_setFromHsl()", HSL)
     var
         h = HSL.h,
         s = IchiColor.prototype._normaliz(HSL.s, 0, 100, 1),
@@ -735,45 +735,92 @@ IchiColor.prototype.set = function (args)
         }
         else if (arguments[0].constructor === Object)  // IchiColor({r:r, g:g, b:b, alpha:alpha})
         {
-            if (arguments[0]["r"] != undefined)
-            {
-                this.r = arguments[0]["r"];
 
-            } else if (arguments[0]["red"] != undefined)
+            if (arguments[0]["h"] != undefined)
             {
-                this.r = arguments[0]["red"];
+                if (arguments[0]["v"] != undefined)//hsv
+                {
+                    this.hsv._h = arguments[0]["h"];
+                    if (arguments[0]["s"] != undefined)
+                    {
+                        this.hsv._s = arguments[0]["s"];
+                    }
+                    this.hsv._v = arguments[0]["v"];
+                    this._setFromHsv({h: this.hsv._h, s: this.hsv._s, v: this.hsv._v})
+
+
+                }
+                else if (arguments[0]["l"] != undefined)//hsl
+                {
+                    this.hsl._h = arguments[0]["h"];
+                    if (arguments[0]["s"] != undefined)
+                    {
+                        this.hsl._s = arguments[0]["s"];
+                    }
+                    this.hsl._l = arguments[0]["l"];
+                    this._setFromHsl({h: this.hsl._h, s: this.hsl._s, l: this.hsl._l})
+
+                }
+                else if (arguments[0]["w"] != undefined)//hwb
+                {
+                    this.hwb._h = arguments[0]["h"];
+                    if (arguments[0]["w"] != undefined)
+                    {
+                        this.hwb._w = arguments[0]["w"];
+                    }
+                    if (arguments[0]["b"] != undefined)
+                    {x
+                        this.hwb._b = arguments[0]["b"];
+                    }
+                    this._setFromHwb({h: this.hwb._h, w: this.hwb._w, b: this.hwb._b})
+
+
+                }
+
+            }
+            else          //rgb
+            {
+                if (arguments[0]["r"] != undefined)
+                {
+                    this.r = arguments[0]["r"];
+
+                } else if (arguments[0]["red"] != undefined)
+                {
+                    this.r = arguments[0]["red"];
+                }
+
+                if (arguments[0]["g"] != undefined)
+                {
+                    this.g = arguments[0]["g"];
+
+                } else if (arguments[0]["green"] != undefined)
+                {
+                    this.g = arguments[0]["green"];
+                }
+                else if (arguments[0]["grain"] != undefined)
+                {
+                    this.g = arguments[0]["grain"];
+                }
+
+                if (arguments[0]["b"] != undefined)
+                {
+                    this.b = arguments[0]["b"];
+
+                } else if (arguments[0]["blue"] != undefined)
+                {
+                    this.b = arguments[0]["blue"];
+                }
+
+                if (arguments[0]["a"] != undefined)
+                {
+                    this.alpha = arguments[0]["a"];
+
+                } else if (arguments[0]["alpha"] != undefined)
+                {
+                    this.alpha = arguments[0]["alpha"];
+                }
             }
 
-            if (arguments[0]["g"] != undefined)
-            {
-                this.g = arguments[0]["g"];
-
-            } else if (arguments[0]["green"] != undefined)
-            {
-                this.g = arguments[0]["green"];
-            }
-            else if (arguments[0]["grain"] != undefined)
-            {
-                this.g = arguments[0]["grain"];
-            }
-
-            if (arguments[0]["b"] != undefined)
-            {
-                this.b = arguments[0]["b"];
-
-            } else if (arguments[0]["blue"] != undefined)
-            {
-                this.b = arguments[0]["blue"];
-            }
-
-            if (arguments[0]["a"] != undefined)
-            {
-                this.alpha = arguments[0]["a"];
-
-            } else if (arguments[0]["alpha"] != undefined)
-            {
-                this.alpha = arguments[0]["alpha"];
-            }
 
         }
 
@@ -1311,6 +1358,21 @@ IchiColor.prototype.getRedGrainBlue = function ()
 {
     return {red: this.r, grain: this.g, blue: this.b};
 };
+
+
+IchiColor.prototype.getClone = function ()
+{
+    var clone = new IchiColor({r: this.r, g: this.g, b: this.b})
+    return clone;
+};
+
+
+IchiColor.prototype.getInvertColor = function ()
+{
+    var clone = new IchiColor({r: 255 - this.r, g: 255 - this.g, b: 255 - this.b})
+    return clone;
+};
+
 
 export default IchiColor;
 
