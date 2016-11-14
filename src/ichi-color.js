@@ -139,20 +139,6 @@ IchiColor.prototype._gethex = function ()
     return hex;
 };
 
-IchiColor.prototype._getRGB = function ()
-{
-    return {r: this.r, g: this.g, b: this.b};
-};
-
-IchiColor.prototype._getRedGreenBlue = function ()
-{
-    return {red: this.r, green: this.g, blue: this.b};
-};
-
-IchiColor.prototype._getRedGrainBlue = function ()
-{
-    return {red: this.r, grain: this.g, blue: this.b};
-};
 
 /**
  *
@@ -214,7 +200,7 @@ IchiColor.prototype.adjust_hueSaturation = function (hue, saturation, brightness
 IchiColor.prototype._getHsl = function ()
 {
     console.log("_getHsl()")
-    var rgb = _normalizArray([this.r, this.g, this.b], 0, 255, 1);
+    var rgb = IchiColor.prototype._normalizArray([this.r, this.g, this.b], 0, 255, 1);
 
     var r, g, b, h, s, l, d, max, min;
 
@@ -267,9 +253,9 @@ IchiColor.prototype._getHsv = function ()
 {
     console.log("_getHsv()")
     var max, min, h, s, v, d,
-        r = _normaliz(this.r, 0, 255, 1),
-        g = _normaliz(this.g, 0, 255, 1),
-        b = _normaliz(this.b, 0, 255, 1);
+        r = IchiColor.prototype._normaliz(this.r, 0, 255, 1),
+        g = IchiColor.prototype._normaliz(this.g, 0, 255, 1),
+        b = IchiColor.prototype._normaliz(this.b, 0, 255, 1);
 
     max = Math.max(r, g, b);
     min = Math.min(r, g, b);
@@ -309,8 +295,7 @@ IchiColor.prototype._getHsv = function ()
 
 IchiColor.prototype._getHwb = function ()
 {
-    console.log("_getHwb()")
-    var HSV = _RGB_to_HSV([this.r, this.g, this.b]);
+    var HSV = IchiColor.prototype._RGB_to_HSV([this.r, this.g, this.b]);
 
     var H, W, B;
 
@@ -319,7 +304,6 @@ IchiColor.prototype._getHwb = function ()
     B = Math.round(100 - HSV[2]);
 
     return {h: H, w: W, b: B};
-
 }
 
 
@@ -329,8 +313,8 @@ IchiColor.prototype._setFromHsv = function (HSV)
     var r, g, b, i, f, p, q, t;
 
     var
-        s = _normaliz(HSV.s, 0, 100, 1),
-        v = _normaliz(HSV.v, 0, 100, 1),
+        s = IchiColor.prototype._normaliz(HSV.s, 0, 100, 1),
+        v = IchiColor.prototype._normaliz(HSV.v, 0, 100, 1),
         h = HSV.h / 60;
 
     i = Math.floor(h);
@@ -386,7 +370,7 @@ IchiColor.prototype._setFromHsv = function (HSV)
     }
 
 
-    var rgb = _normaOutRGB(_normalizArray([r, g, b], 0, 1, 255));
+    var rgb = IchiColor.prototype._normaOutRGB(IchiColor.prototype._normalizArray([r, g, b], 0, 1, 255));
 
     this.__pauseUpdate = true;
     this.r = rgb[0];
@@ -396,6 +380,7 @@ IchiColor.prototype._setFromHsv = function (HSV)
     this.__pauseUpdate_Hsv = true;
     this.__undateValue();
     this.__pauseUpdate_Hsv = false;
+    this.__freshly_hsv = true;
     return this;
 }
 
@@ -403,6 +388,7 @@ IchiColor.prototype._setFromHsv = function (HSV)
 IchiColor.prototype._setFromHwb = function (HWB)
 {
     console.log("_setFromHwb()", HWB)
+    this.__freshly_hwb = true;
 
     var H, S, V;
 
@@ -422,7 +408,7 @@ IchiColor.prototype._setFromHwb = function (HWB)
     S = 100 - (de * 100);
     V = 100 - HWB.b;
 
-    var rgb = _HSV_to_RGB([H, S, V]);
+    var rgb = IchiColor.prototype._HSV_to_RGB([H, S, V]);
 
 
     this.__pauseUpdate = true;
@@ -433,12 +419,13 @@ IchiColor.prototype._setFromHwb = function (HWB)
     this.__pauseUpdate_Hwb = true;
     this.__undateValue();
     this.__pauseUpdate_Hwb = false;
+    this.__freshly_hwb = true;
     return this;
 
 
 }
 
-function _HSV_to_RGB(HSV)
+IchiColor.prototype._HSV_to_RGB = function (HSV)
 {
     var r, g, b, i, f, p, q, t;
 
@@ -449,8 +436,8 @@ function _HSV_to_RGB(HSV)
     }
 
     var
-        s = _normaliz(HSV[1], 0, 100, 1),
-        v = _normaliz(HSV[2], 0, 100, 1),
+        s = IchiColor.prototype._normaliz(HSV[1], 0, 100, 1),
+        v = IchiColor.prototype._normaliz(HSV[2], 0, 100, 1),
         h = HSV[0] / 60;
 
     i = Math.floor(h);
@@ -506,14 +493,14 @@ function _HSV_to_RGB(HSV)
     }
 
 
-    return _normaOutRGB(_normalizArray([r, g, b], 0, 1, 255));
+    return IchiColor.prototype._normaOutRGB(IchiColor.prototype._normalizArray([r, g, b], 0, 1, 255));
 }
-function _RGB_to_HSV(rgb)
+IchiColor.prototype._RGB_to_HSV = function (rgb)
 {
     var max, min, h, s, v, d,
-        r = _normaliz(rgb[0], 0, 255, 1),
-        g = _normaliz(rgb[1], 0, 255, 1),
-        b = _normaliz(rgb[2], 0, 255, 1);
+        r = IchiColor.prototype._normaliz(rgb[0], 0, 255, 1),
+        g = IchiColor.prototype._normaliz(rgb[1], 0, 255, 1),
+        b = IchiColor.prototype._normaliz(rgb[2], 0, 255, 1);
 
     max = Math.max(r, g, b);
     min = Math.min(r, g, b);
@@ -553,11 +540,12 @@ function _RGB_to_HSV(rgb)
 
 IchiColor.prototype._setFromHsl = function (HSL)
 {
+    this.__freshly_hsl = true;
     console.log("_setFromHsl()", HSL)
     var
         h = HSL.h,
-        s = _normaliz(HSL.s, 0, 100, 1),
-        l = _normaliz(HSL.l, 0, 100, 1);
+        s = IchiColor.prototype._normaliz(HSL.s, 0, 100, 1),
+        l = IchiColor.prototype._normaliz(HSL.l, 0, 100, 1);
 
     if (h == undefined)
     {
@@ -615,7 +603,7 @@ IchiColor.prototype._setFromHsl = function (HSL)
     g += CC;
     b += CC;
 
-    var rgb = _normaOutRGB(_normalizArray([r, g, b], 0, 1, 255));
+    var rgb = IchiColor.prototype._normaOutRGB(IchiColor.prototype._normalizArray([r, g, b], 0, 1, 255));
 
     this.__pauseUpdate = true;
     this.r = rgb[0];
@@ -625,20 +613,22 @@ IchiColor.prototype._setFromHsl = function (HSL)
     this.__pauseUpdate_Hsl = true;
     this.__undateValue();
     this.__pauseUpdate_Hsl = false;
+    this.__freshly_hsl = true;
     return this;
 }
 
 
-function _normalizArray(inArray, inMin, inMax, newMax)
+IchiColor.prototype._normalizArray = function (inArray, inMin, inMax, newMax)
 {
     for (var i = 0; i < inArray.length; i++)
     {
-        inArray[i] = _normaliz(inArray[i], inMin, inMax, newMax);
+        inArray[i] = IchiColor.prototype._normaliz(inArray[i], inMin, inMax, newMax);
     }
     return inArray;
 }
 
-function _normaliz(inNumber, inMin, inMax, newMax)
+
+IchiColor.prototype._normaliz = function (inNumber, inMin, inMax, newMax)
 {
     var newNumber = 0;
 
@@ -655,7 +645,7 @@ function _normaliz(inNumber, inMin, inMax, newMax)
     return newNumber;
 }
 
-function _normaOutRGB(inArray)
+IchiColor.prototype._normaOutRGB = function (inArray)
 {
 
     var z = 0
@@ -676,13 +666,13 @@ function _normaOutRGB(inArray)
  * Color("#FFFFFF").int() => 16777215
  * @returns {number}
  */
-IchiColor.prototype.int = function ()
-{
-    var int = 0;
-
-    int = (this.r << 16) + ( this.g << 8) + this.b;
-    return int;
-}
+// IchiColor.prototype.int = function ()
+// {
+//     var int = 0;
+//
+//     int = (this.r << 16) + ( this.g << 8) + this.b;
+//     return int;
+// }
 
 
 /**
@@ -1084,7 +1074,7 @@ IchiColor.prototype.initSetterGetter = function ()
             }
         }
     );
-    
+
     Object.defineProperty(this.hsl, "l",
         {
             set: function (x)
@@ -1234,7 +1224,7 @@ IchiColor.prototype.__undateValue = function ()
     }
 
 
-    if (this.__use_hsl)
+    if (this.__use_hwb)
     {
         if (this.__pauseUpdate_Hwb != true)
         {
@@ -1246,6 +1236,7 @@ IchiColor.prototype.__undateValue = function ()
 
 IchiColor.prototype.__undatePart_Hsv = function ()
 {
+    console.log("__undatePart_Hsv")
     var hsv = this._getHsv();
     this.hsv._h = hsv.h;
     this.hsv._s = hsv.s;
@@ -1255,6 +1246,7 @@ IchiColor.prototype.__undatePart_Hsv = function ()
 
 IchiColor.prototype.__undatePart_Hsl = function ()
 {
+    console.log("__undatePart_Hsl")
     var hsl = this._getHsl();
     this.hsl._h = hsl.h;
     this.hsl._s = hsl.s;
@@ -1265,6 +1257,7 @@ IchiColor.prototype.__undatePart_Hsl = function ()
 
 IchiColor.prototype.__undatePart_Hwb = function ()
 {
+    console.log("__undatePart_Hwb")
     var hwb = this._getHwb();
     this.hwb._h = hwb.h;
     this.hwb._w = hwb.w;
@@ -1279,12 +1272,45 @@ IchiColor.prototype.__colorValueRange = function (value, min, max)
     if (value > max)
     {
         return max;
-    } else if (value < min)
+
+    }
+    else if (value < min)
     {
         return min;
     }
     return value;
 }
+
+IchiColor.prototype.getRGB = function ()
+{
+    return {r: this.r, g: this.g, b: this.b}
+}
+
+IchiColor.prototype.getHSL = function ()
+{
+    return {h: this.hsl.h, s: this.hsl.s, l: this.hsl.l}
+}
+
+IchiColor.prototype.getHSV = function ()
+{
+    return {h: this.hsv.h, s: this.hsv.s, v: this.hsv.v}
+}
+
+IchiColor.prototype.getHWB = function ()
+{
+    return {h: this.hwb.h, w: this.hwb.w, b: this.hwb.b}
+}
+
+
+IchiColor.prototype.getRedGreenBlue = function ()
+{
+    return {red: this.r, green: this.g, blue: this.b};
+};
+
+IchiColor.prototype.getRedGrainBlue = function ()
+{
+    return {red: this.r, grain: this.g, blue: this.b};
+};
 
 export default IchiColor;
 

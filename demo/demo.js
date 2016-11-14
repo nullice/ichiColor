@@ -13,7 +13,7 @@ function fiter_IchiColor(x)
 }
 Vue.filter('ichiColor', fiter_IchiColor);
 
-
+window.cc = IchiColor("#FFF")
 var mainVue = new Vue({
     el: 'body',
     methods: {},
@@ -23,7 +23,7 @@ var mainVue = new Vue({
         colors: [1, 2, 3, 4, 5, 6, 1, 7, 8, 9,],
         adjust: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0,],
         IchiColor: IchiColor,
-        scolor1: IchiColor("#FFF"),
+        scolor1: window.cc,
 
 
     },
@@ -32,46 +32,55 @@ var mainVue = new Vue({
 
 
 window.mainVue = mainVue;
+
+TEST_all()
+function TEST_all()
+{
+    _test_hex();
+}
+
+
+function _test_hex()
+{
+    var hexs = []
+    console.time("[get hexs]")
+    var color = new Color();
+    for (var i = 0; i < 0xffffff; i++)
+    {
+        color.set(i)
+        hexs.push(color.hex)
+    }
+    console.timeEnd("[get hexs]")
+    console.log(hexs)
 //
 //
-// var hexs = []
-// console.time("[get hexs]color.hex()")
-// var color = new Color();
-// for (var i = 0; i < 0xfff; i++)
-// {
-//     color.set(i)
-//     hexs.push(color.hex())
-// }
-// console.timeEnd("[get hexs]color.hex()")
-// console.log(hexs)
+    console.time("color.hex")
+    var color = new Color();
+    for (var i = 0; i < hexs.length; i++)
+    {
+        color.set(hexs[i])
+        if (color.hex != hexs[i])
+        {
+            console.log("color.hex：err：", color.hex, hexs[i])
+        }
+
+    }
+    console.timeEnd("color.hex")
+
+    console.time("one.color.hex()")
+
+    for (var i = 0; i < hexs.length; i++)
+    {
+        if (one.color(hexs[i]).hex() != hexs[i])
+        {
+            console.log("one.color.hex()：err：", one.color(hexs[i]).hex(), hexs[i])
+        }
+    }
+    console.timeEnd("one.color.hex()")
+}
+
 //
 //
-// console.time("color.hex()")
-// var color = new Color();
-// for (var i = 0; i < hexs.length; i++)
-// {
-//     color.set(hexs[i])
-//     if (color.hex() != hexs[i])
-//     {
-//         console.log("color.hex()：err：", color.hex(), hexs[i])
-//     }
-//
-// }
-// console.timeEnd("color.hex()")
-//
-//
-// console.time("one.color.hex()")
-//
-// for (var i = 0; i < hexs.length; i++)
-// {
-//
-//     if (one.color(hexs[i]).hex() != hexs[i])
-//     {
-//         console.log("one.color.hex()：err：", one.color(hexs[i]).hex(), hexs[i])
-//     }
-//
-// }
-// console.timeEnd("one.color.hex()")
 
 
 //---------------------------------------------------------------------
