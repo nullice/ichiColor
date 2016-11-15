@@ -32,6 +32,20 @@ var mainVue = new Vue({
 
 window.mainVue = mainVue;
 
+
+function scanInt()
+{
+    setTimeout(function ()
+    {
+        cc.int++;
+        if (cc.int < 0xffffff)
+        {
+            scanInt();
+        }
+    }, 1);
+}
+window.scanInt = scanInt;
+
 // _cheak_with_onecolor();
 // TEST_all()
 function TEST_all()

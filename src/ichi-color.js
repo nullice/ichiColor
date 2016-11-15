@@ -199,9 +199,9 @@ IchiColor.prototype.adjust_hueSaturation = function (hue, saturation, brightness
 
 IchiColor.prototype._getHsl = function ()
 {
-   // console.log("_getHsl2()")
-    var rgb = this._normalizArray([this.r, this.g, this.b], 0, 255, 1);
-    console.log("rgb",rgb)
+    // console.log("_getHsl2()")
+    var rgb = this._normalizArray([this._r, this._g, this._b], 0, 255, 1);
+    // console.debug(1)
     var r, g, b, h, s, l, d, max, min;
 
     r = rgb[0];
@@ -213,9 +213,9 @@ IchiColor.prototype._getHsl = function ()
     l = (max + min) / 2;
 
     if (max === min)
-{
-    h = s = 0; // achromatic
-}
+    {
+        h = s = 0; // achromatic
+    }
     else
     {
         d = max - min;
@@ -245,6 +245,21 @@ IchiColor.prototype._getHsl = function ()
     h = Math.round(h);
     s = Math.round(s);
     l = Math.round(l);
+
+    if (h < 0 || s < 0 || s > 100 || l < 0 || l > 100)
+    {
+        console.error("rgb", rgb, {
+            r: r,
+            g: g,
+            b: b,
+            h: h,
+            s: s,
+            l: l,
+            d: d,
+            max: max,
+            min: min
+        }, [this._r, this._g, this._b])
+    }
     return {h: h, s: s, l: l};
 };
 
@@ -769,7 +784,8 @@ IchiColor.prototype.set = function (args)
                         this.hwb._w = arguments[0]["w"];
                     }
                     if (arguments[0]["b"] != undefined)
-                    {x
+                    {
+                        x
                         this.hwb._b = arguments[0]["b"];
                     }
                     this._setFromHwb({h: this.hwb._h, w: this.hwb._w, b: this.hwb._b})

@@ -59,11 +59,12 @@
     B:<input  max="100" min="0"  v-model="scolor1.hwb.b" type="range" class="exmo_range" >{{scolor1.hwb.b}}
 </div>
 
-<div class="object" style="font-size: 12px;color: #949494;padding: 30px 0;">
+<div class="object" style="font-size: 12px;color: #949494;padding: 30px 0; position: absolute; top:30px;right: 30px">
    <pre     style="font-family: sans-serif;" > {{scolor1|json 4}}</pre>
 </div>
-
-
+<br>
+<br>
+<button class="exmo_button" onclick="scanInt()"> 遍历颜色 </button>
 
 
 <!--<div>-->
