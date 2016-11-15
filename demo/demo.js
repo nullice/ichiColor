@@ -3,9 +3,10 @@
  */
 
 import IchiColor from "./../src/ichi-color.js"
+import ColorRNA from "./../src/lib/ColorRNA"
 window.IchiColor = IchiColor;
 window.Color = IchiColor;
-
+window.ColorRNA = ColorRNA;
 
 function fiter_IchiColor(x)
 {
@@ -24,8 +25,6 @@ var mainVue = new Vue({
         adjust: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0,],
         IchiColor: IchiColor,
         scolor1: window.cc,
-
-
     },
     components: {}
 })
@@ -33,10 +32,52 @@ var mainVue = new Vue({
 
 window.mainVue = mainVue;
 
+// _cheak_with_onecolor();
 // TEST_all()
 function TEST_all()
 {
     _test_hex();
+}
+
+
+function _cheak_with_onecolor()
+{
+    var hexs = []
+    console.time("[_cheak_with_onecolor]")
+    var color = new Color();
+    for (var i = 0; i < 0xffffff; i++)
+    {
+        color.set(i)
+        if (color.hsl.h < 0)
+        {
+            console.log(color.getRGB(), color.getHSL())
+        }
+        if (color.hsl.s < 0)
+        {
+            console.log(color.getRGB(), color.getHSL())
+        }
+        if (color.hsl.l < 0)
+        {
+            console.log(color.getRGB(), color.getHSL())
+        }
+
+        // hexs.push(color.hex)
+        // var oneColor = one.color(hexs[i])
+        // check(oneColor.hue()*100, color.hsl.h, "oneColor.hue(),color.hsl.h")
+        // check(oneColor.saturation()*100, color.hsl.s, "oneColor.saturation(),color.hsl.s")
+        // check(oneColor.lightness()*100, color.hsl.l, "oneColor.lightness(),color.hsl.l")
+        // console.log(color.getRGB(), color.getHSL())
+    }
+    console.timeEnd("[_cheak_with_onecolor]")
+
+
+    function check(a, b, errInfo)
+    {
+        if (a != b)
+        {
+            console.log(a + "!=" + b, errInfo)
+        }
+    }
 }
 
 

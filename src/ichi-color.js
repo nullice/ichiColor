@@ -199,9 +199,9 @@ IchiColor.prototype.adjust_hueSaturation = function (hue, saturation, brightness
 
 IchiColor.prototype._getHsl = function ()
 {
-    // console.log("_getHsl()")
-    var rgb = IchiColor.prototype._normalizArray([this.r, this.g, this.b], 0, 255, 1);
-
+   // console.log("_getHsl2()")
+    var rgb = this._normalizArray([this.r, this.g, this.b], 0, 255, 1);
+     // console.log("rgb",rgb)
     var r, g, b, h, s, l, d, max, min;
 
     r = rgb[0];
@@ -622,7 +622,7 @@ IchiColor.prototype._normalizArray = function (inArray, inMin, inMax, newMax)
 {
     for (var i = 0; i < inArray.length; i++)
     {
-        inArray[i] = IchiColor.prototype._normaliz(inArray[i], inMin, inMax, newMax);
+        inArray[i] = this._normaliz(inArray[i], inMin, inMax, newMax);
     }
     return inArray;
 }
@@ -1293,9 +1293,7 @@ IchiColor.prototype.__undatePart_Hsv = function ()
 
 IchiColor.prototype.__undatePart_Hsl = function ()
 {
-     // console.log("__undatePart_Hsl")
     var hsl = this._getHsl();
-    // console.log(hsl)
     this.hsl._h = hsl.h;
     this.hsl._s = hsl.s;
     this.hsl._l = hsl.l;
