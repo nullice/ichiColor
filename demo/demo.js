@@ -37,7 +37,7 @@ function scanInt()
 {
     setTimeout(function ()
     {
-        cc.int++;
+        cc.int += 44;
         if (cc.int < 0xffffff)
         {
             scanInt();
