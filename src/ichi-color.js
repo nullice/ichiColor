@@ -327,10 +327,16 @@ IchiColor.prototype._setFromHsv = function (HSV)
     // console.log("_setFromHsv()", HSV)
     var r, g, b, i, f, p, q, t;
 
+
     var
         s = IchiColor.prototype._normaliz(HSV.s, 0, 100, 1),
         v = IchiColor.prototype._normaliz(HSV.v, 0, 100, 1),
         h = HSV.h / 60;
+
+    if (HSV.h == 360)
+    {
+        h = 0;
+    }
 
     i = Math.floor(h);
     f = h - i;
@@ -410,6 +416,10 @@ IchiColor.prototype._setFromHwb = function (HWB)
 
     H = HWB.h;
 
+    if (H== 360)
+    {
+        H = 0;
+    }
 
     if (HWB.b == 100)
     {
@@ -561,6 +571,12 @@ IchiColor.prototype._setFromHsl = function (HSL)
         h = HSL.h,
         s = IchiColor.prototype._normaliz(HSL.s, 0, 100, 1),
         l = IchiColor.prototype._normaliz(HSL.l, 0, 100, 1);
+
+    if (h == 360)
+    {
+        h = 0;
+    }
+
 
     if (h == undefined)
     {
@@ -1005,10 +1021,10 @@ IchiColor.prototype.initSetterGetter = function ()
             {
                 x = Number.parseInt(x);
                 x = this.__obSelf.__colorValueRange(x, 0, 360);
-                if (x == 360)
-                {
-                    x = 0;
-                }
+                // if (x == 360)
+                // {
+                //     x = 0;
+                // }
                 this._h = x;
                 this.__obSelf._setFromHsv({h: this._h, s: this._s, v: this._v})
             },
@@ -1093,10 +1109,10 @@ IchiColor.prototype.initSetterGetter = function ()
             {
                 x = Number.parseInt(x);
                 x = this.__obSelf.__colorValueRange(x, 0, 360);
-                if (x == 360)
-                {
-                    x = 0;
-                }
+                // if (x == 360)
+                // {
+                //     x = 0;
+                // }
                 this._h = x;
                 this.__obSelf._setFromHsl({h: this._h, s: this._s, l: this._l})
             },
@@ -1178,10 +1194,10 @@ IchiColor.prototype.initSetterGetter = function ()
             {
                 x = Number.parseInt(x);
                 x = this.__obSelf.__colorValueRange(x, 0, 360);
-                if (x == 360)
-                {
-                    x = 0;
-                }
+                // if (x == 360)
+                // {
+                //     x = 0;
+                // }
                 this._h = x;
                 this.__obSelf._setFromHwb({h: this._h, w: this._w, b: this._b})
             },
