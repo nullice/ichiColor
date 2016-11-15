@@ -31,13 +31,13 @@ var mainVue = new Vue({
 
 
 window.mainVue = mainVue;
-
+window.adds = 1;
 
 function scanInt()
 {
     setTimeout(function ()
     {
-        cc.int += 44;
+        cc.int += window.adds;
         if (cc.int < 0xffffff)
         {
             scanInt();
