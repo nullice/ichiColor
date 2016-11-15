@@ -201,7 +201,7 @@ IchiColor.prototype._getHsl = function ()
 {
    // console.log("_getHsl2()")
     var rgb = this._normalizArray([this.r, this.g, this.b], 0, 255, 1);
-     // console.log("rgb",rgb)
+    console.log("rgb",rgb)
     var r, g, b, h, s, l, d, max, min;
 
     r = rgb[0];
@@ -213,9 +213,9 @@ IchiColor.prototype._getHsl = function ()
     l = (max + min) / 2;
 
     if (max === min)
-    {
-        h = s = 0; // achromatic
-    }
+{
+    h = s = 0; // achromatic
+}
     else
     {
         d = max - min;
