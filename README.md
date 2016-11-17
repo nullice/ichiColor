@@ -21,14 +21,15 @@
 ## Features
 
 支持色彩以下色彩值间的转换：
-- rgb
-- hsl
-- hsv (hsb)
-- hwb
-- hex (色彩值十六进制文本)
-- int (色彩值十进制整数)
+- `rgb`
+- `hsl`
+- `hsv` (`hsb`)
+- `hwb`
+- `hex` (色彩值十六进制文本)
+- `int` (色彩值十进制整数)
+- `rgba` (CSS 格式 RGBA 文本)
 
-配合 Vue 可以用非常少的代码完成色彩选择器，如 [demo](https://nullice.github.io/ichiColor/demo/demo.html)
+配合 Vue 可以用[非常少的代码](https://github.com/nullice/ichiColor/blob/master/demo/demo.html)完成色彩选择器，如 [demo](https://nullice.github.io/ichiColor/demo/demo.html)
 
 比其他同类库有更高的性能表现，如遍历所有颜色，比 [one-color](https://github.com/One-com/one-color) 快一个数量级
 
@@ -42,7 +43,7 @@ ES6 方式的模块载入：
 import IchiColor from "./ichi-color.js"
 ```
 
-### color
+### color value
 
 一个 IchiColor 的实例表示一个颜色，创建实例时可省略 new 关键字：
 ```js
@@ -65,6 +66,8 @@ color1.g      //0
 color1.b      //34
 color1.hex    //"#ff0022"
 color1.int    //16711714 (10 进制色彩值)
+color1.rgba   //"rgba(255, 0, 34, 1)"
+color1.alpha  //1 (rgba 的不透明度)
 
 color1.hsl.h  //352
 color1.hsl.s  //100
@@ -99,7 +102,7 @@ color1.hsl.l = 20
 color1.r        //7
 color1.g        //58
 color1.b        //95
-
+...
 ```
 
 另外还可以使用实例上的 set() 方法，其可传入的参数格式和创建实例时的完全一致：
@@ -142,15 +145,17 @@ newColor2.hex   //"#f8c5a0"
 
 
 
-
-
-
 ## Other
+由于使用了 ECMAScript 5.1 标准里的 setter 和 getter ，IE8 及以下的浏览器无法使用
+
+虽然 IchiColor 的实例属性是 getter，不过取值时没有色彩计算过程（色彩计算在 set 时完成），不用担心连续取值性能问题 
 
 如果想要更多的功能，如色彩空间转换、色差计算，可以使用我另一个计算功能更多的色彩库：
 [ColorRNA](https://github.com/nullice/ColorRNA/)
 
 本来想叫 oneColor 的无奈名字被先用了，只好叫 ichiColor 了
+
+
 
 
 
