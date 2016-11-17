@@ -67,6 +67,7 @@ color1.b      //34
 color1.hex    //"#ff0022"
 color1.int    //16711714 (10 进制色彩值)
 color1.rgba   //"rgba(255, 0, 34, 1)"
+color1.alpha  //1 (rgba 的不透明度)
 
 color1.hsl.h  //352
 color1.hsl.s  //100
