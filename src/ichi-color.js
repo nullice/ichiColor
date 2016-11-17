@@ -416,7 +416,7 @@ IchiColor.prototype._setFromHwb = function (HWB)
 
     H = HWB.h;
 
-    if (H== 360)
+    if (H == 360)
     {
         H = 0;
     }
@@ -868,6 +868,8 @@ IchiColor.prototype.set = function (args)
 
 IchiColor.prototype.initSetterGetter = function ()
 {
+    this._alpha = 1;
+    this._rgba = "rgba(0, 0, 0, 1)";
     this._r = 0;
     this._r_intPart = 0;
     this._r_hexChar = "00";
@@ -1003,6 +1005,89 @@ IchiColor.prototype.initSetterGetter = function ()
             }
         }
     );
+
+    //RGBA
+    this.__use_rgba = false;
+    this.__freshly_rgba = false;
+    Object.defineProperty(this, "rgba",
+        {
+            set: function (x)
+            {
+                var reg = /[0-9\.]+/
+                var arr = x.split(",");
+                if (arr.length >= 3)
+                {
+                    this.__pauseUpdate = true;
+                    var result = reg.exec(arr[0])
+                    if (result.length > 0)
+                    {
+                        this.r = Number.parseInt(result[0]);
+                    }
+
+                    result = reg.exec(arr[1])
+                    if (result.length > 0)
+                    {
+                        this.g = Number.parseInt(result[0]);
+                    }
+
+                    result = reg.exec(arr[2])
+                    if (result.length > 0)
+                    {
+                        this.b = Number.parseInt(result[0]);
+                    }
+
+                    if (arr.length == 4)
+                    {
+                        result = reg.exec(arr[3])
+
+
+                        if (result.length > 0)
+                        {
+                            if (result >= 0 && result <= 1)
+                            {
+                                this.alpha = +result[0];
+                            }
+                        }
+                    }
+
+                    this.__pauseUpdate = false;
+                    this.__undateValue()
+
+                }
+
+            }
+            ,
+            get: function ()
+            {
+                if (this.__use_rgba != true)
+                {
+                    this.__use_rgba = true;
+                }
+                if (this.__freshly_rgba != true)
+                {
+                    this.__undatePart_Rgba();
+                }
+                return this._rgba;
+            }
+        }
+    );
+
+    Object.defineProperty(this, "alpha",
+        {
+            set: function (x)
+            {
+                x = +x;
+                x = this.__colorValueRange(x, 0, 1);
+                this._alpha = x;
+                this.__undatePart_Rgba();
+            },
+            get: function ()
+            {
+                return this._alpha;
+            }
+        }
+    );
+
 
     //HSV------------------------------------------------------------------
     this.__use_hsv = false;
@@ -1310,6 +1395,12 @@ IchiColor.prototype.__undateValue = function ()
             this.__undatePart_Hwb();
         }
     }
+
+    if (this.__use_rgba)
+    {
+        this.__undatePart_Rgba();
+    }
+
 }
 
 
@@ -1341,6 +1432,13 @@ IchiColor.prototype.__undatePart_Hwb = function ()
     this.hwb._w = hwb.w;
     this.hwb._b = hwb.b;
     this.__freshly_hwb = true;
+}
+
+
+IchiColor.prototype.__undatePart_Rgba = function ()
+{
+    this._rgba = "rgba(" + this._r + ", " + this._g + ", " + this._b + ", " + this.alpha + ")";
+    this.__freshly_rgba = true;
 }
 
 
