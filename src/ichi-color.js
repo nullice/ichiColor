@@ -322,6 +322,55 @@ IchiColor.prototype._getHwb = function ()
 }
 
 
+IchiColor.prototype._setFromRgba = function (x)
+{
+    var reg = /[0-9\.]+/
+    var arr = x.split(",");
+    if (arr.length >= 3)
+    {
+        this.__pauseUpdate = true;
+        var result = reg.exec(arr[0])
+        if (result.length > 0)
+        {
+            this.r = Number.parseInt(result[0]);
+        }
+
+        result = reg.exec(arr[1])
+        if (result.length > 0)
+        {
+            this.g = Number.parseInt(result[0]);
+        }
+
+        result = reg.exec(arr[2])
+        if (result.length > 0)
+        {
+            this.b = Number.parseInt(result[0]);
+        }
+
+        if (arr.length == 4)
+        {
+            result = reg.exec(arr[3])
+
+
+            if (result.length > 0)
+            {
+                if (result >= 0 && result <= 1)
+                {
+                    this.alpha = +result[0];
+                }
+            }
+        }
+
+        this.__pauseUpdate = false;
+        this.__undateValue()
+    }
+    
+    
+    
+}
+
+
+
 IchiColor.prototype._setFromHsv = function (HSV)
 {
     // console.log("_setFromHsv()", HSV)
@@ -741,6 +790,9 @@ IchiColor.prototype.set = function (args)
                 }
 
 
+            }else if(arguments[0][0] === "r") //rgba
+            {
+                this._setFromRgba(arguments[0])
             }
             else if (arguments[0] == +arguments[0])
             {
@@ -1013,48 +1065,7 @@ IchiColor.prototype.initSetterGetter = function ()
         {
             set: function (x)
             {
-                var reg = /[0-9\.]+/
-                var arr = x.split(",");
-                if (arr.length >= 3)
-                {
-                    this.__pauseUpdate = true;
-                    var result = reg.exec(arr[0])
-                    if (result.length > 0)
-                    {
-                        this.r = Number.parseInt(result[0]);
-                    }
-
-                    result = reg.exec(arr[1])
-                    if (result.length > 0)
-                    {
-                        this.g = Number.parseInt(result[0]);
-                    }
-
-                    result = reg.exec(arr[2])
-                    if (result.length > 0)
-                    {
-                        this.b = Number.parseInt(result[0]);
-                    }
-
-                    if (arr.length == 4)
-                    {
-                        result = reg.exec(arr[3])
-
-
-                        if (result.length > 0)
-                        {
-                            if (result >= 0 && result <= 1)
-                            {
-                                this.alpha = +result[0];
-                            }
-                        }
-                    }
-
-                    this.__pauseUpdate = false;
-                    this.__undateValue()
-
-                }
-
+                this._setFromRgba(x)
             }
             ,
             get: function ()

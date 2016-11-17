@@ -28,7 +28,6 @@
     <br>
     rgba:<input v-model="scolor1.rgba" style="width: 180px;" type="text" class="exmo_input_text">
 
-
     <br>
     int:<input style="width: 200px;" max="16777215" min="0"  v-model="scolor1.int" type="range" class="exmo_range" >{{scolor1.int}}
 
@@ -70,32 +69,12 @@
 <button class="exmo_button" onclick="scanInt()"> 扫描颜色 </button>
 
 
-<!--<div>-->
-    <!--H: <input v-model="colors[1]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">-->
-    <!--S <input v-model="colors[2]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">-->
-    <!--V <input v-model="colors[3]" type="text" class="exmo_input_text" list="team_list" v-on:change="scolor1._setFromHsv({h:colors[1], s:colors[2] ,v:colors[3] }) ">-->
+<div>
+    <br> <br>
+    <a class="github-button" href="https://github.com/nullice/ichiColor" data-style="mega" data-count-href="/nullice/ichiColor/stargazers" data-count-api="/repos/nullice/ichiColor#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star nullice/ichiColor on GitHub">Star</a>
+</div>
 
-
-
-<!--<div>-->
-    <!--{{scolor1 |json}}<br>-->
-    <!--{{scolor1.hex()}}<br>-->
-    <!--{{scolor1._getHsv()|json}} <br>-->
-    <!--<div style="width: 100px; height: 20px; background: {{scolor1.hex()}};"></div>-->
-<!--</div>-->
-
-
-    <!--<div>-->
-        <!--色相： <input value="0" max="180" min="-180"  v-model="adjust[0]" type="range" class="exmo_range" v-on:change="scolor1.adjust_hueSaturation(adjust[0])">{{adjust[0]}}-->
-        <!--<br>-->
-        <!--饱和度： <input value="0"  max="100" min="-100" v-model="adjust[1]" type="range" class="exmo_range"v-on:change="scolor1.adjust_hueSaturation(null,adjust[1])">{{adjust[1]}}-->
-        <!--<br>-->
-        <!--明度： <input value="0"  max="100" min="-100" v-model="adjust[2]" type="range" class="exmo_range" v-on:change="scolor1.adjust_hueSaturation(null,null,adjust[2])">{{adjust[2]}}-->
-    <!--</div>-->
-
-
-<!--</div>-->
-
+<script async defer src="https://buttons.github.io/buttons.js" ></script>
 
 <script src="./vue.js"></script>
 <script src="./vs/one-color.js"></script>

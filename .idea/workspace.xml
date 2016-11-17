@@ -24,8 +24,8 @@
       <file leaf-file-name="demo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/demo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="69" column="53" selection-start-line="69" selection-start-column="53" selection-end-line="69" selection-end-column="53" />
+            <state relative-caret-position="544">
+              <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -41,24 +41,11 @@
       <file leaf-file-name="ichi-color.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ichi-color.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="1080" column="32" selection-start-line="1080" selection-start-column="32" selection-end-line="1080" selection-end-column="32" />
+            <state relative-caret-position="306">
+              <caret line="1450" column="88" selection-start-line="1450" selection-start-column="83" selection-end-line="1450" selection-end-column="88" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
-                <element signature="e#17816#17824#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ColorRNA.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lib/ColorRNA.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1710">
-              <caret line="1783" column="0" selection-start-line="1783" selection-start-column="0" selection-end-line="1783" selection-end-column="0" />
-              <folding>
-                <element signature="e#42127#42918#0" expanded="false" />
-                <element signature="e#42968#44104#0" expanded="false" />
+                <element signature="e#18882#18890#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -349,7 +336,7 @@
       <updated>1478521671009</updated>
       <workItem from="1478521672744" duration="7680000" />
       <workItem from="1478530533198" duration="64706000" />
-      <workItem from="1479022384835" duration="50473000" />
+      <workItem from="1479022384835" duration="52031000" />
     </task>
     <task id="LOCAL-00001" summary="demo&#10;">
       <created>1478568355699</created>
@@ -404,7 +391,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122859000" />
+    <option name="totallyTimeSpent" value="124417000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -514,7 +501,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#17816#17824#0" expanded="false" />
+            <element signature="e#18882#18890#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -562,7 +549,7 @@
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#17816#17824#0" expanded="false" />
+            <element signature="e#18882#18890#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -686,8 +673,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/ColorRNA.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1710">
-          <caret line="1783" column="0" selection-start-line="1783" selection-start-column="0" selection-end-line="1783" selection-end-column="0" />
+        <state relative-caret-position="264">
+          <caret line="2296" column="19" selection-start-line="2296" selection-start-column="19" selection-end-line="2296" selection-end-column="19" />
           <folding>
             <element signature="e#42127#42918#0" expanded="false" />
             <element signature="e#42968#44104#0" expanded="false" />
@@ -697,19 +684,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ichi-color.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="1080" column="32" selection-start-line="1080" selection-start-column="32" selection-end-line="1080" selection-end-column="32" />
+        <state relative-caret-position="306">
+          <caret line="1450" column="88" selection-start-line="1450" selection-start-column="83" selection-end-line="1450" selection-end-column="88" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#17816#17824#0" expanded="false" />
+            <element signature="e#18882#18890#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/demo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="69" column="53" selection-start-line="69" selection-start-column="53" selection-end-line="69" selection-end-column="53" />
+        <state relative-caret-position="544">
+          <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
