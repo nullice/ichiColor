@@ -2,11 +2,18 @@
  * Created by bgllj on 2016/11/7.
  */
 
-import IchiColor from "./../src/ichi-color.js"
+import _IchiColor from "./../src/ichi-color.js"
 import ColorRNA from "./../src/lib/ColorRNA"
+import IchiColorEx from "./../src/ichi-color-extension.js"
+
+var IchiColor = IchiColorEx(_IchiColor)
+
+window.IchiColorEx = IchiColorEx;
 window.IchiColor = IchiColor;
 window.Color = IchiColor;
 window.ColorRNA = ColorRNA;
+
+
 
 function fiter_IchiColor(x)
 {
