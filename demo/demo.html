@@ -7,104 +7,160 @@
 
 
 </head>
-<body id="body" style="padding: 40px 100px">
+<body id="body"
+      style="padding: 40px 100px;    max-width: 800px;   position: absolute;   right: 0; left: 0; margin: auto; padding: 50px 100px;">
 
 
 <!--IchiColor(<input v-model="colors[0]" type="text" class="exmo_input_text" list="team_list">) =-->
 <!--{{colors[0]|ichiColor|json}}-->
 
 
+<div style="max-width: 800px">
 
-<div style="width: 200px; height: 40px; background: {{scolor1.hex}};"></div>
+    <div>
 
-<div>
+        <h4>ichi-color</h4>
+        <br>
+        <div style="width: 200px; height: 40px; background: {{scolor1.hex}};"></div>
 
-    R:<input v-model="scolor1.r" type="text" class="exmo_input_text">
-    G:<input v-model="scolor1.g" type="text" class="exmo_input_text">
-    B:<input v-model="scolor1.b" type="text" class="exmo_input_text">
-    <br>
-    int:<input v-model="scolor1.int" type="text" class="exmo_input_text">
-    hex:<input v-model="scolor1.hex" type="text" class="exmo_input_text">
-    <br>
-    rgba:<input v-model="scolor1.rgba" style="width: 180px;" type="text" class="exmo_input_text">
+        R:<input v-model="scolor1.r" type="text" class="exmo_input_text">
+        G:<input v-model="scolor1.g" type="text" class="exmo_input_text">
+        B:<input v-model="scolor1.b" type="text" class="exmo_input_text">
+        <br>
+        int:<input v-model="scolor1.int" type="text" class="exmo_input_text">
+        hex:<input v-model="scolor1.hex" type="text" class="exmo_input_text">
+        <br>
+        rgba:<input v-model="scolor1.rgba" style="width: 180px;" type="text" class="exmo_input_text">
 
-    <br>
-    int:<input style="width: 200px;" max="16777215" min="0"  v-model="scolor1.int" type="range" class="exmo_range" >{{scolor1.int}}
+        <br>
+        int:<input style="width: 200px;" max="16777215" min="0" v-model="scolor1.int" type="range" class="exmo_range">{{scolor1.int}}
 
-    <br> <br>
-    R:<input  max="255" min="0"  v-model="scolor1.r" type="range" class="exmo_range" >{{scolor1.r}}
-    <br>
-    G:<input  max="255" min="0"  v-model="scolor1.g" type="range" class="exmo_range" >{{scolor1.g}}
-    <br>
-    B:<input  max="255" min="0"  v-model="scolor1.b" type="range" class="exmo_range" >{{scolor1.b}}
+        <br> <br>
+        R:<input max="255" min="0" v-model="scolor1.r" type="range" class="exmo_range">{{scolor1.r}}
+        <br>
+        G:<input max="255" min="0" v-model="scolor1.g" type="range" class="exmo_range">{{scolor1.g}}
+        <br>
+        B:<input max="255" min="0" v-model="scolor1.b" type="range" class="exmo_range">{{scolor1.b}}
 
 
-    <br> <br>
-    H:<input  max="360" min="0"  v-model="scolor1.hsv.h" type="range" class="exmo_range" >{{scolor1.hsv.h}}
-    <br>
-    S:<input  max="100" min="0"  v-model="scolor1.hsv.s" type="range" class="exmo_range" >{{scolor1.hsv.s}}
-    <br>
-    V:<input  max="100" min="0"  v-model="scolor1.hsv.v" type="range" class="exmo_range" >{{scolor1.hsv.v}}
+        <br> <br>
+        H:<input max="360" min="0" v-model="scolor1.hsv.h" type="range" class="exmo_range">{{scolor1.hsv.h}}
+        <br>
+        S:<input max="100" min="0" v-model="scolor1.hsv.s" type="range" class="exmo_range">{{scolor1.hsv.s}}
+        <br>
+        V:<input max="100" min="0" v-model="scolor1.hsv.v" type="range" class="exmo_range">{{scolor1.hsv.v}}
 
-    <br> <br>
-    H:<input  max="360" min="0"  v-model="scolor1.hsl.h" type="range" class="exmo_range" >{{scolor1.hsl.h}}
-    <br>
-    S:<input  max="100" min="0"  v-model="scolor1.hsl.s" type="range" class="exmo_range" >{{scolor1.hsl.s}}
-    <br>
-    L:<input  max="100" min="0"  v-model="scolor1.hsl.l" type="range" class="exmo_range" >{{scolor1.hsl.l}}
+        <br> <br>
+        H:<input max="360" min="0" v-model="scolor1.hsl.h" type="range" class="exmo_range">{{scolor1.hsl.h}}
+        <br>
+        S:<input max="100" min="0" v-model="scolor1.hsl.s" type="range" class="exmo_range">{{scolor1.hsl.s}}
+        <br>
+        L:<input max="100" min="0" v-model="scolor1.hsl.l" type="range" class="exmo_range">{{scolor1.hsl.l}}
 
-    <br> <br>
-    H:<input  max="360" min="0"  v-model="scolor1.hwb.h" type="range" class="exmo_range" >{{scolor1.hwb.h}}
-    <br>
-    W:<input  max="100" min="0"  v-model="scolor1.hwb.w" type="range" class="exmo_range" >{{scolor1.hwb.w}}
-    <br>
-    B:<input  max="100" min="0"  v-model="scolor1.hwb.b" type="range" class="exmo_range" >{{scolor1.hwb.b}}
+        <br> <br>
+        H:<input max="360" min="0" v-model="scolor1.hwb.h" type="range" class="exmo_range">{{scolor1.hwb.h}}
+        <br>
+        W:<input max="100" min="0" v-model="scolor1.hwb.w" type="range" class="exmo_range">{{scolor1.hwb.w}}
+        <br>
+        B:<input max="100" min="0" v-model="scolor1.hwb.b" type="range" class="exmo_range">{{scolor1.hwb.b}}
 
-    <br> <br>
-    H:<input  max="360" min="0"  v-model="scolor1.hwb.h" type="range" class="exmo_range" >{{scolor1.hwb.h}}
-    <br>
-    W:<input  max="100" min="0"  v-model="scolor1.hwb.w" type="range" class="exmo_range" >{{scolor1.hwb.w}}
-    <br>
-    B:<input  max="100" min="0"  v-model="scolor1.hwb.b" type="range" class="exmo_range" >{{scolor1.hwb.b}}
+        <br> <br>
+        H:<input max="360" min="0" v-model="scolor1.hwb.h" type="range" class="exmo_range">{{scolor1.hwb.h}}
+        <br>
+        W:<input max="100" min="0" v-model="scolor1.hwb.w" type="range" class="exmo_range">{{scolor1.hwb.w}}
+        <br>
+        B:<input max="100" min="0" v-model="scolor1.hwb.b" type="range" class="exmo_range">{{scolor1.hwb.b}}
 
-    <br> <br>
-   <div style="font-size: 10px"> Lab (Photoshop D50)</div>
-    L:<input  max="100" min="0"  v-model="scolor1.ex.labPs.l" type="range" class="exmo_range" >{{scolor1.ex.labPs.l}}
-    <br>
-    a:<input  max="127" min="-128"  v-model="scolor1.ex.labPs.a" type="range" class="exmo_range" >{{scolor1.ex.labPs.a}}
-    <br>
-    b:<input  max="127" min="-128"  v-model="scolor1.ex.labPs.b" type="range" class="exmo_range" >{{scolor1.ex.labPs.b}}
 
-    <br> <div style="font-size: 10px"> Lab (D65)</div>
-    L:<input  max="100" min="0"  v-model="scolor1.ex.lab.l" type="range" class="exmo_range" >{{scolor1.ex.lab.l}}
-    <br>
-    a:<input  max="127" min="-128"  v-model="scolor1.ex.lab.a" type="range" class="exmo_range" >{{scolor1.ex.lab.a}}
-    <br>
-    b:<input  max="127" min="-128"  v-model="scolor1.ex.lab.b" type="range" class="exmo_range" >{{scolor1.ex.lab.b}}
+    </div>
 
-    <br><div style="font-size: 10px"> LCHab </div>
-    L:<input  max="100" min="0"  v-model="scolor1.ex.LCHab.l" type="range" class="exmo_range" >{{scolor1.ex.LCHab.l}}
-    <br>
-    c:<input  max="100" min="0"  v-model="scolor1.ex.LCHab.c" type="range" class="exmo_range" >{{scolor1.ex.LCHab.c}}
-    <br>
-    h:<input  max="360" min="0"  v-model="scolor1.ex.LCHab.h" type="range" class="exmo_range" >{{scolor1.ex.LCHab.h}}
+    <div class="object"
+         style="font-size: 12px;color: #949494;padding: 30px 0; position: absolute; top:30px;right: 30px">
 
+        <div class="ex" style="width: 300px;">
+            <h4>ichi-color-extension</h4>
+            <br><br>
+            <div style="font-size: 10px"> HSL255 (microsoft office)</div>
+            H:<input max="255" min="0" v-model="scolor1.ex.hsl255.h" type="range" class="exmo_range">{{scolor1.ex.hsl255.h}}
+            <br>
+            S:<input max="255" min="0" v-model="scolor1.ex.hsl255.s" type="range" class="exmo_range">{{scolor1.ex.hsl255.s}}
+            <br>
+            L:<input max="255" min="0" v-model="scolor1.ex.hsl255.l" type="range" class="exmo_range">{{scolor1.ex.hsl255.l}}
+
+            <br><br>
+            <div style="font-size: 10px"> HSL240 (windows system)</div>
+            H:<input max="239" min="0" v-model="scolor1.ex.hsl240.h" type="range" class="exmo_range">{{scolor1.ex.hsl240.h}}
+            <br>
+            S:<input max="240" min="0" v-model="scolor1.ex.hsl240.s" type="range" class="exmo_range">{{scolor1.ex.hsl240.s}}
+            <br>
+            L:<input max="240" min="0" v-model="scolor1.ex.hsl240.l" type="range" class="exmo_range">{{scolor1.ex.hsl240.l}}
+
+            <br> <br>
+            <div style="font-size: 10px"> Lab (Photoshop D50)</div>
+            L:<input max="100" min="0" v-model="scolor1.ex.labPs.l" type="range" class="exmo_range">{{scolor1.ex.labPs.l}}
+            <br>
+            a:<input max="127" min="-128" v-model="scolor1.ex.labPs.a" type="range" class="exmo_range">{{scolor1.ex.labPs.a}}
+            <br>
+            b:<input max="127" min="-128" v-model="scolor1.ex.labPs.b" type="range" class="exmo_range">{{scolor1.ex.labPs.b}}
+
+            <br> <br>
+            <div style="font-size: 10px"> Lab (D65)</div>
+            L:<input max="100" min="0" v-model="scolor1.ex.lab.l" type="range" class="exmo_range">{{scolor1.ex.lab.l}}
+            <br>
+            a:<input max="127" min="-128" v-model="scolor1.ex.lab.a" type="range" class="exmo_range">{{scolor1.ex.lab.a}}
+            <br>
+            b:<input max="127" min="-128" v-model="scolor1.ex.lab.b" type="range" class="exmo_range">{{scolor1.ex.lab.b}}
+
+            <br><br>
+            <div style="font-size: 10px"> LCHab</div>
+            L:<input max="100" min="0" v-model="scolor1.ex.LCHab.l" type="range" class="exmo_range">{{scolor1.ex.LCHab.l}}
+            <br>
+            c:<input max="100" min="0" v-model="scolor1.ex.LCHab.c" type="range" class="exmo_range">{{scolor1.ex.LCHab.c}}
+            <br>
+            h:<input max="360" min="0" v-model="scolor1.ex.LCHab.h" type="range" class="exmo_range">{{scolor1.ex.LCHab.h}}
+
+            <br><br>
+            <div style="font-size: 10px"> XYZ</div>
+            X:<input max="1.5" min="0.0" step="0.01" v-model="scolor1.ex.xyz.x" type="range" class="exmo_range">{{scolor1.ex.xyz.x}}
+            <br>
+            Y:<input max="1.5" min="0.0" step="0.01" v-model="scolor1.ex.xyz.y" type="range" class="exmo_range">{{scolor1.ex.xyz.y}}
+            <br>
+            Z:<input max="1.5" min="0.0" step="0.01" v-model="scolor1.ex.xyz.z" type="range" class="exmo_range">{{scolor1.ex.xyz.z}}
+
+            <br><br>
+            <div style="font-size: 10px"> xyY</div>
+            x:<input max="1" min="0.0" step="0.01" v-model="scolor1.ex.xyY.x" type="range" class="exmo_range">{{scolor1.ex.xyY.x}}
+            <br>
+            y:<input max="1" min="0.0" step="0.01" v-model="scolor1.ex.xyY.y" type="range" class="exmo_range">{{scolor1.ex.xyY.y}}
+            <br>
+            Y:<input max="1" min="0.0" step="0.01" v-model="scolor1.ex.xyY.Y" type="range" class="exmo_range">{{scolor1.ex.xyY.Y}}
+
+            <br><br>
+            <div style="font-size: 10px"> Luv</div>
+            L:<input max="100" min="0"  v-model="scolor1.ex.luv.l" type="range" class="exmo_range">{{scolor1.ex.luv.l}}
+            <br>
+            u:<input max="200" min="-150"  v-model="scolor1.ex.luv.u" type="range" class="exmo_range">{{scolor1.ex.luv.u}}
+            <br>
+            v:<input max="200" min="-150"  v-model="scolor1.ex.luv.v" type="range" class="exmo_range">{{scolor1.ex.luv.v}}
+        </div>
+
+
+        <br> <br> <h4>instance object preview</h4>
+        <pre style="font-family: sans-serif;"> {{scolor1|json 4}}</pre>
+    </div>
+    <br>
+    <br>
+    <button class="exmo_button" onclick="scanInt()"> 扫描颜色</button>
+
+
+    <div>
+        <br> <br>
+        <a class="github-button" href="https://github.com/nullice/ichiColor" data-style="mega"
+           data-count-href="/nullice/ichiColor/stargazers" data-count-api="/repos/nullice/ichiColor#stargazers_count"
+           data-count-aria-label="# stargazers on GitHub" aria-label="Star nullice/ichiColor on GitHub">Star</a>
+    </div>
 </div>
-
-<div class="object" style="font-size: 12px;color: #949494;padding: 30px 0; position: absolute; top:30px;right: 30px">
-   <pre     style="font-family: sans-serif;" > {{scolor1|json 4}}</pre>
-</div>
-<br>
-<br>
-<button class="exmo_button" onclick="scanInt()"> 扫描颜色 </button>
-
-
-<div>
-    <br> <br>
-    <a class="github-button" href="https://github.com/nullice/ichiColor" data-style="mega" data-count-href="/nullice/ichiColor/stargazers" data-count-api="/repos/nullice/ichiColor#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star nullice/ichiColor on GitHub">Star</a>
-</div>
-
-<script async defer src="https://buttons.github.io/buttons.js" ></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <script src="./vue.js"></script>
 <script src="./vs/one-color.js"></script>
