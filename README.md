@@ -48,7 +48,6 @@
 
 ```
     <input v-model="color1.r" type="text" > //用 vue 直接绑定属性
-        
 ```
 
 比其他同类库有更高的性能表现，如遍历所有颜色，比 [one-color](https://github.com/One-com/one-color) 快一个数量级
