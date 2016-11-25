@@ -704,11 +704,7 @@ function expandIchiColor(IchiColor)
             this.ex._theLuma_Rec709 =this.ex.colorRNA.getLuma("709").toFixed(3);
             this.ex._theLuma_WCAG =this.ex.colorRNA.getWCAGluma().toFixed(3);
             this.ex._theWavelength =this.ex.colorRNA.getWavelength().toFixed(1);
-
-
             
-
-
         }
 
 

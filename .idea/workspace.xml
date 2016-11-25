@@ -78,8 +78,8 @@
       <file leaf-file-name="ichi-color-extension.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ichi-color-extension.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="704" column="75" selection-start-line="704" selection-start-column="75" selection-end-line="704" selection-end-column="75" />
+            <state relative-caret-position="13671">
+              <caret line="706" column="12" selection-start-line="706" selection-start-column="12" selection-end-line="706" selection-end-column="12" />
               <folding>
                 <element signature="e#44#83#0" expanded="true" />
                 <element signature="e#934#1610#0" expanded="false" />
@@ -381,7 +381,7 @@
       <workItem from="1479379316998" duration="686000" />
       <workItem from="1479476811828" duration="1211000" />
       <workItem from="1479692081545" duration="504000" />
-      <workItem from="1479955839188" duration="32271000" />
+      <workItem from="1479955839188" duration="32327000" />
     </task>
     <task id="LOCAL-00001" summary="demo&#10;">
       <created>1478568355699</created>
@@ -436,7 +436,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160416000" />
+    <option name="totallyTimeSpent" value="160472000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1024,8 +1024,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ichi-color-extension.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="704" column="75" selection-start-line="704" selection-start-column="75" selection-end-line="704" selection-end-column="75" />
+        <state relative-caret-position="13671">
+          <caret line="706" column="12" selection-start-line="706" selection-start-column="12" selection-end-line="706" selection-end-column="12" />
           <folding>
             <element signature="e#44#83#0" expanded="true" />
             <element signature="e#934#1610#0" expanded="false" />
