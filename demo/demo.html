@@ -79,7 +79,12 @@
 
         <div class="ex" style="width: 300px;">
             <h4>ichi-color-extension</h4>
-            <br><br>
+            <br>
+            <label class="exmo_checkbox">
+                <input type="checkbox" v-model="scolor1.__ex_enable"> enable
+                <div class="exmo_checkbox_shadow"></div>
+            </label>
+            <br>
             <div style="font-size: 10px"> HSL255 (microsoft office)</div>
             H:<input max="255" min="0" v-model="scolor1.ex.hsl255.h" type="range" class="exmo_range">{{scolor1.ex.hsl255.h}}
             <br>

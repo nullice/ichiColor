@@ -2681,7 +2681,7 @@ ColorRNA.prototype.getWCAGcontrastThan = function (inColor)
 {//http://www.w3.org/TR/WCAG20/#contrast-ratiodef
 
     var luma1 = this.getWCAGluma(),
-        luma2 = inColor.getWCAGluma();
+    luma2 = inColor.getWCAGluma();
 
     if (luma1 > luma2)
     {

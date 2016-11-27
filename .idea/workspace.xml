@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="demo.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="demo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/demo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="152" column="56" selection-start-line="152" selection-start-column="56" selection-end-line="152" selection-end-column="56" />
+            <state relative-caret-position="273">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="27" selection-end-column="73" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -52,8 +52,8 @@
       <file leaf-file-name="ColorRNA.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lib/ColorRNA.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1537">
-              <caret line="1795" column="0" selection-start-line="1795" selection-start-column="0" selection-end-line="1795" selection-end-column="0" />
+            <state relative-caret-position="1246">
+              <caret line="2684" column="0" selection-start-line="2684" selection-start-column="0" selection-end-line="2684" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -62,8 +62,8 @@
       <file leaf-file-name="ichi-color.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ichi-color.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12663">
-              <caret line="621" column="18" selection-start-line="621" selection-start-column="18" selection-end-line="621" selection-end-column="18" />
+            <state relative-caret-position="112">
+              <caret line="34" column="54" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="54" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
                 <element signature="e#14570#15507#0" expanded="false" />
@@ -75,16 +75,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ichi-color-extension.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ichi-color-extension.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ichi-color-extension.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13671">
-              <caret line="706" column="12" selection-start-line="706" selection-start-column="12" selection-end-line="706" selection-end-column="12" />
+            <state relative-caret-position="651">
+              <caret line="33" column="57" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="57" />
               <folding>
                 <element signature="e#44#83#0" expanded="true" />
-                <element signature="e#934#1610#0" expanded="false" />
-                <element signature="e#1686#2263#0" expanded="false" />
-                <element signature="e#2339#2917#0" expanded="false" />
+                <element signature="e#1228#1904#0" expanded="false" />
+                <element signature="e#1980#2557#0" expanded="false" />
+                <element signature="e#2633#3211#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -103,8 +103,8 @@
       <file leaf-file-name="demo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/demo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2898">
-              <caret line="8" column="27" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="27" />
+            <state relative-caret-position="126">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="39" />
               <folding>
                 <element signature="e#43#90#0" expanded="true" />
               </folding>
@@ -136,8 +136,8 @@
         <option value="$PROJECT_DIR$/src/ichiColorEx.js" />
         <option value="$PROJECT_DIR$/demo/demo.js" />
         <option value="$PROJECT_DIR$/src/ichi-color.js" />
-        <option value="$PROJECT_DIR$/src/lib/ColorRNA.js" />
         <option value="$PROJECT_DIR$/demo/demo.html" />
+        <option value="$PROJECT_DIR$/src/lib/ColorRNA.js" />
         <option value="$PROJECT_DIR$/src/ichi-color-extension.js" />
       </list>
     </option>
@@ -381,7 +381,7 @@
       <workItem from="1479379316998" duration="686000" />
       <workItem from="1479476811828" duration="1211000" />
       <workItem from="1479692081545" duration="504000" />
-      <workItem from="1479955839188" duration="32327000" />
+      <workItem from="1479955839188" duration="40494000" />
     </task>
     <task id="LOCAL-00001" summary="demo&#10;">
       <created>1478568355699</created>
@@ -436,7 +436,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160472000" />
+    <option name="totallyTimeSpent" value="168639000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -449,16 +449,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19669509" sideWeight="0.4642857" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2611051" sideWeight="0.5022981" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19669509" sideWeight="0.53571427" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19669509" sideWeight="0.53571427" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45287108" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22943723" sideWeight="0.4977019" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19669509" sideWeight="0.53571427" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22943723" sideWeight="0.4977019" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19669509" sideWeight="0.53571427" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1975764" sideWeight="0.51137596" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -885,13 +885,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpack_BUILD.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/demo-main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="501">
@@ -941,13 +934,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/vue.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -964,20 +950,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webpack_BUILD.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/demo/demo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2898">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="27" />
+        <state relative-caret-position="126">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="39" />
           <folding>
             <element signature="e#43#90#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/ColorRNA.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1246">
+          <caret line="2684" column="0" selection-start-line="2684" selection-start-column="0" selection-end-line="2684" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ichi-color.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="34" column="54" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+            <element signature="e#14570#15507#0" expanded="false" />
+            <element signature="e#15592#15736#0" expanded="false" />
+            <element signature="e#19035#19043#0" expanded="false" />
+            <element signature="e#26700#27465#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ichi-color-extension.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="33" column="57" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="57" />
+          <folding>
+            <element signature="e#44#83#0" expanded="true" />
+            <element signature="e#1228#1904#0" expanded="false" />
+            <element signature="e#1980#2557#0" expanded="false" />
+            <element signature="e#2633#3211#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/demo/demo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="152" column="56" selection-start-line="152" selection-start-column="56" selection-end-line="152" selection-end-column="56" />
+        <state relative-caret-position="273">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="27" selection-end-column="73" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -996,41 +1033,6 @@
             <element signature="n#style#0;n#div#7;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#8;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#pre#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/ColorRNA.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1537">
-          <caret line="1795" column="0" selection-start-line="1795" selection-start-column="0" selection-end-line="1795" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ichi-color.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12663">
-          <caret line="621" column="18" selection-start-line="621" selection-start-column="18" selection-end-line="621" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#14570#15507#0" expanded="false" />
-            <element signature="e#15592#15736#0" expanded="false" />
-            <element signature="e#19035#19043#0" expanded="false" />
-            <element signature="e#26700#27465#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ichi-color-extension.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13671">
-          <caret line="706" column="12" selection-start-line="706" selection-start-column="12" selection-end-line="706" selection-end-column="12" />
-          <folding>
-            <element signature="e#44#83#0" expanded="true" />
-            <element signature="e#934#1610#0" expanded="false" />
-            <element signature="e#1686#2263#0" expanded="false" />
-            <element signature="e#2339#2917#0" expanded="false" />
           </folding>
         </state>
       </provider>

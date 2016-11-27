@@ -25,6 +25,16 @@ function expandIchiColor(IchiColor)
         obSelf.__pauseUpdate_ex_xyY = false;
         obSelf.__pauseUpdate_ex_luv = false;
 
+
+        obSelf.ex.getWCAGcontrastThan = function (color)
+        {
+            obSelf.ex.colorRNA.rgb(obSelf.r, obSelf.g, obSelf.b);
+
+            var color2 = new ColorRNA([color.r, color.g, color.b]);
+           return (obSelf.ex.colorRNA.getWCAGcontrastThan(color2)).toFixed(1);
+        }
+
+
         //LabPs-----------------------------------
         obSelf.ex.labPs = {
             _l: 0,
@@ -606,11 +616,6 @@ function expandIchiColor(IchiColor)
         );
 
 
-
-
-
-
-
         function verifyNumber(x)
         {
             x = +x;
@@ -645,66 +650,66 @@ function expandIchiColor(IchiColor)
 
             if (this.__pauseUpdate_ex_labPs != true)
             {
-                var labPs =  this.ex.colorRNA.LabPS();
+                var labPs = this.ex.colorRNA.LabPS();
                 this.ex.labPs._l = labPs[0];
                 this.ex.labPs._a = labPs[1];
                 this.ex.labPs._b = labPs[2];
             }
             if (this.__pauseUpdate_ex_lab != true)
             {
-                var lab =  this.ex.colorRNA.Lab();
+                var lab = this.ex.colorRNA.Lab();
                 this.ex.lab._l = lab[0];
                 this.ex.lab._a = lab[1];
                 this.ex.lab._b = lab[2];
             }
             if (this.__pauseUpdate_ex_LCHab != true)
             {
-                var LCHab =  this.ex.colorRNA.LCHab();
+                var LCHab = this.ex.colorRNA.LCHab();
                 this.ex.LCHab._l = LCHab[0];
                 this.ex.LCHab._c = LCHab[1];
                 this.ex.LCHab._h = LCHab[2];
             }
             if (this.__pauseUpdate_ex_hsl255 != true)
             {
-                var hsl255 =  this.ex.colorRNA.HSL255();
+                var hsl255 = this.ex.colorRNA.HSL255();
                 this.ex.hsl255._h = hsl255[0];
                 this.ex.hsl255._s = hsl255[1];
                 this.ex.hsl255._l = hsl255[2];
             }
             if (this.__pauseUpdate_ex_hsl240 != true)
             {
-                var hsl240 =  this.ex.colorRNA.HSL240();
+                var hsl240 = this.ex.colorRNA.HSL240();
                 this.ex.hsl240._h = hsl240[0];
                 this.ex.hsl240._s = hsl240[1];
                 this.ex.hsl240._l = hsl240[2];
             }
             if (this.__pauseUpdate_ex_xyz != true)
             {
-                var xyz =  this.ex.colorRNA.XYZ();
+                var xyz = this.ex.colorRNA.XYZ();
                 this.ex.xyz._x = xyz[0];
                 this.ex.xyz._y = xyz[1];
                 this.ex.xyz._z = xyz[2];
             }
             if (this.__pauseUpdate_ex_xyY != true)
             {
-                var xyY =  this.ex.colorRNA.xyY();
+                var xyY = this.ex.colorRNA.xyY();
                 this.ex.xyY._x = xyY[0];
                 this.ex.xyY._y = xyY[1];
                 this.ex.xyY._Y = xyY[2];
             }
             if (this.__pauseUpdate_ex_luv != true)
             {
-                var luv =  this.ex.colorRNA.Luv();
+                var luv = this.ex.colorRNA.Luv();
                 this.ex.luv._l = luv[0];
                 this.ex.luv._u = luv[1];
                 this.ex.luv._v = luv[2];
 
             }
 
-            this.ex._theLuma_Rec709 =this.ex.colorRNA.getLuma("709").toFixed(3);
-            this.ex._theLuma_WCAG =this.ex.colorRNA.getWCAGluma().toFixed(3);
-            this.ex._theWavelength =this.ex.colorRNA.getWavelength().toFixed(1);
-            
+            this.ex._theLuma_Rec709 = this.ex.colorRNA.getLuma("709").toFixed(3);
+            this.ex._theLuma_WCAG = this.ex.colorRNA.getWCAGluma().toFixed(3);
+            this.ex._theWavelength = this.ex.colorRNA.getWavelength().toFixed(1);
+
         }
 
 
