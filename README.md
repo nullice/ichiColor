@@ -189,7 +189,7 @@ var IchiColor = IchiColorEx(IchiColor_base) //添加扩展功能
 - `ichiColor.ex.LCHab`
 - `ichiColor.ex.luv`
 - `ichiColor.ex.theLuma_Rec709` (只读, Rec709 标准辉度)
-- `ichiColor.ex.theLuma_WCAG` (只读, Rec709 标准辉度)
+- `ichiColor.ex.theLuma_WCAG` (只读, Web 无障碍标准辉度)
 - `ichiColor.ex.theWavelength` (只读, 光谱波长)
 - `ichiColor.ex.getWCAGcontrastThan( ichiColor )` (计算 Web 无障碍标准颜色对比度)
 
