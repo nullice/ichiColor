@@ -29,7 +29,26 @@
 - `int` (色彩值十进制整数)
 - `rgba` (CSS 格式 RGBA 文本)
 
+**extension 扩展功能**
+- `hsl255` (Microsoft Office 色彩选择器风格)
+- `hsl240` (Windows 系统色彩选择器风格)
+- `labPs` (D50 白点, Photoshop 风格)
+- `lab` (D65 白点)
+- `xyz`
+- `xyY`
+- `LCHab`
+- `luv`
+- `theLuma_Rec709` (只读, Rec709 标准辉度)
+- `theLuma_WCAG` (只读, Rec709 标准辉度)
+- `theWavelength` (只读, 光谱波长)
+- `getWCAGcontrastThan()` (计算 Web 无障碍标准颜色对比度)
+
+
 配合 Vue 可以用[非常少的代码](https://github.com/nullice/ichiColor/blob/master/demo/demo.html)完成色彩选择器，如 [demo](https://nullice.github.io/ichiColor/demo/demo.html)
+
+```
+    <input v-model="color1.r" type="text" > //用 vue 直接绑定属性
+```
 
 比其他同类库有更高的性能表现，如遍历所有颜色，比 [one-color](https://github.com/One-com/one-color) 快一个数量级
 
@@ -43,7 +62,7 @@ ES6 方式的模块载入：
 import IchiColor from "./ichi-color.js"
 ```
 
-### color value
+### compute
 
 一个 IchiColor 的实例表示一个颜色，创建实例时可省略 new 关键字：
 ```js
@@ -143,6 +162,38 @@ newColor2.hex   //"#f8c5a0"
 
 ```
 
+
+
+
+## Extension 
+一些不常用的功能通过扩展来通过提供
+
+使用扩展功能的载入：
+```js
+import IchiColor_base from "./ichi-color.js"
+import IchiColorEx from "./ichi-color-extension.js"
+
+var IchiColor = IchiColorEx(IchiColor_base) //添加扩展功能
+```
+
+之后 `IchiColor` 的实例会有 `ichiColor.ex` 属性，其中就是扩展功能
+
+扩展功能：
+
+- `ichiColor.ex.hsl255` (Microsoft Office 色彩选择器风格)
+- `ichiColor.ex.hsl240` (Windows 系统色彩选择器风格)
+- `ichiColor.ex.labPs` (D50 白点, Photoshop 风格)
+- `ichiColor.ex.lab` (D65 白点)
+- `ichiColor.ex.xyz`
+- `ichiColor.ex.xyY`
+- `ichiColor.ex.LCHab`
+- `ichiColor.ex.luv`
+- `ichiColor.ex.theLuma_Rec709` (只读, Rec709 标准辉度)
+- `ichiColor.ex.theLuma_WCAG` (只读, Rec709 标准辉度)
+- `ichiColor.ex.theWavelength` (只读, 光谱波长)
+- `ichiColor.ex.getWCAGcontrastThan( ichiColor )` (计算 Web 无障碍标准颜色对比度)
+
+扩展功能的色彩计算使用了 [ColorRNA.js](https://github.com/nullice/ColorRNA) 库，并没有做特别的优化，使用扩展后色彩计算速度会有下降，可以通过设置的实例的属性 `ichiColor.__ex_enable` 为　false 来暂停扩展功能。
 
 
 ## Other
