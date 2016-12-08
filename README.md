@@ -44,7 +44,7 @@
 - `getWCAGcontrastThan()` (计算 Web 无障碍标准颜色对比度)
 
 
-配合 Vue 可以用[非常少的代码](https://github.com/nullice/ichiColor/blob/master/demo/demo.html)完成色彩选择器，如 [demo](https://nullice.github.io/ichiColor/demo/demo.html)
+配合 Vue.js 可以用[非常少的代码](https://github.com/nullice/ichiColor/blob/master/demo/demo.html)完成色彩选择器，如 [demo](https://nullice.github.io/ichiColor/demo/demo.html)
 
 ```
     <input v-model="color1.r" type="text" > //用 vue 直接绑定属性
