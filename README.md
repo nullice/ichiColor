@@ -1,5 +1,9 @@
 # ichiColor
+
+[![Coverage Status](https://coveralls.io/repos/github/nullice/ichiColor/badge.svg?branch=master)](https://coveralls.io/github/nullice/ichiColor?branch=master)
+
 一个数据响应风格的 Javascript 颜色处理模块  
+
 
 ```js
 
