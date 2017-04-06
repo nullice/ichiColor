@@ -774,21 +774,38 @@ IchiColor.prototype.set = function (args)
         {
             if (arguments[0][0] === "#")
             {
-                if (arguments[0].length === 4)
+                if (arguments[0].length === 4)//#rgb
                 {
                     var _hex3 = Number.parseInt(arguments[0].slice(1), 16);
                     this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0)
                     this.g = (_hex3 >> 4 & 0xf) | (_hex3 & 0xf0)
                     this.b = ((_hex3 & 0xf) << 4) | (_hex3 & 0xf)
                 }
-                else if (arguments[0].length === 7)
+                if (arguments[0].length === 5)//#argb
+                {
+                    var _alpha = Number.parseInt(arguments[0].slice(1, 2), 16);
+                    this.alpha = ((_alpha & 0xf) << 4) | (_alpha & 0xf);
+
+                    var _hex3 = Number.parseInt(arguments[0].slice(2), 16);
+                    this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0)
+                    this.g = (_hex3 >> 4 & 0xf) | (_hex3 & 0xf0)
+                    this.b = ((_hex3 & 0xf) << 4) | (_hex3 & 0xf)
+                }
+                else if (arguments[0].length === 7)//#rrggbb
                 {
                     arguments[0] = Number.parseInt(arguments[0].slice(1), 16);
                     _string_mod = "number";
                 }
+                else if (arguments[0].length === 9)//#aarrggbb
+                {
+                    var _alpha = Number.parseInt(arguments[0].slice(1, 3), 16);
+                    this.alpha =_alpha;
 
-
-            } else if (arguments[0][0] === "r") //rgba
+                    arguments[0] = Number.parseInt(arguments[0].slice(3), 16);
+                    _string_mod = "number";
+                }
+            }
+            else if (arguments[0][0] === "r") //rgba
             {
                 this._setFromRgba(arguments[0])
             }
