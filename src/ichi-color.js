@@ -799,7 +799,7 @@ IchiColor.prototype.set = function (args)
                 else if (arguments[0].length === 9)//#aarrggbb
                 {
                     var _alpha = Number.parseInt(arguments[0].slice(1, 3), 16);
-                    this.alpha =_alpha;
+                    this.alpha = _alpha;
 
                     arguments[0] = Number.parseInt(arguments[0].slice(3), 16);
                     _string_mod = "number";
@@ -926,7 +926,7 @@ IchiColor.prototype.set = function (args)
     }
     else if (arguments.length === 3)
     {
-
+        this.set([arguments[0], arguments[1], arguments[2]])
     }
 
     return this;
@@ -950,6 +950,7 @@ IchiColor.prototype.initSetterGetter = function ()
 
     this._rgbInt = 0;
     this._rgbHex = "#000000";
+    this._argbHex = "#ff000000";
 
     Object.defineProperty(this, "r",
         {
@@ -1061,7 +1062,7 @@ IchiColor.prototype.initSetterGetter = function ()
                     }
                     else if (x.length === 7)
                     {
-                        x = Number.parseInt(arguments[0].slice(1), 16);
+                        x = Number.parseInt(x.slice(1), 16);
                         this.int = x;
                     }
                 }
@@ -1073,6 +1074,56 @@ IchiColor.prototype.initSetterGetter = function ()
             }
         }
     );
+
+    Object.defineProperty(this, "ahex",
+        {
+            set: function (x)
+            {
+                if (x[0] === "#")
+                {
+                    if (x.length === 5)
+                    {
+                        this.__pauseUpdate = true;
+                        var _alpha = Number.parseInt(x.slice(1, 2), 16);
+                        this.alpha = ((_alpha & 0xf) << 4) | (_alpha & 0xf);
+                        var _hex3 = Number.parseInt(x.slice(2), 16);
+                        this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0)
+                        this.g = (_hex3 >> 4 & 0xf) | (_hex3 & 0xf0)
+                        this.b = ((_hex3 & 0xf) << 4) | (_hex3 & 0xf)
+                        this.__pauseUpdate = false;
+                        this.__undateValue()
+                    }
+                    else if (x.length === 7)
+                    {
+                        var _alpha = Number.parseInt(x.slice(1, 3), 16);
+                        this.alpha = _alpha;
+
+                        x = Number.parseInt(x.slice(3), 16);
+                        this.int = x;
+                    }
+                }
+
+            },
+            get: function ()
+            {
+                return this._rgbHex;
+            }
+        }
+    );
+
+    Object.defineProperty(this, "argb",
+        {
+            set: function (x)
+            {
+                this.ahex = x;
+            },
+            get: function ()
+            {
+                return this._rgbHex;
+            }
+        }
+    );
+
 
     //RGB
     this.__use_rgb = false;

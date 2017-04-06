@@ -2,7 +2,7 @@
  * Created by bgllj on 2016/11/24.
  */
 
-import IchiColor from "./ichi-color.js"
+// import IchiColor from "./ichi-color.js"
 import ColorRNA from "./lib/ColorRNA.js"
 
 function expandIchiColor(IchiColor)
