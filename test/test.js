@@ -156,12 +156,12 @@ test('Get IchiColor.hex', t =>
         [0, 0, 0],
         [1, 2, 3],
         [255, 255, 255],
-        [255,0,0],
-        [0,255,0],
-        [255,0,0],
-        [0,1,32],
-        [2,2,3],
-        [16,16,15],
+        [255, 0, 0],
+        [0, 255, 0],
+        [255, 0, 0],
+        [0, 1, 32],
+        [2, 2, 3],
+        [16, 16, 15],
     ]
     TSET_scan_RGBList('Get IchiColor.hex', test_item, rgbList, t, c)
 
@@ -170,6 +170,29 @@ test('Get IchiColor.hex', t =>
     // c.set([255, 255, 255])
     // t.is(c._gethex(),"#ffffff")
 });
+
+
+test('Func IchiColor.getClone()', t =>
+{
+    var c = IchiColor()
+    c.rgba = "rgba(255, 0, 34, .4)"
+    var c2 = c.getClone()
+    t.deepEqual(c.rgba, c2.rgba)
+});
+
+
+test('Func IchiColor.getInvertColor()', t =>
+{
+    var c = IchiColor()
+    c.rgba = "rgba(255, 0, 34, 1)"
+    var c2 = c.getInvertColor()
+
+    t.is(c2.r , 0)
+    t.is(c2.g , 255)
+    t.is(c2.b , 255 - 34)
+
+});
+
 
 function TSET_scan_allRGB(tsetName, test_unit, t, c)
 {
@@ -221,6 +244,7 @@ function testColor_c_1(t, c)
     t.is(c.b, 34)
     t.is(c.hex, "#ff0022")
     t.is(c.rgba, "rgba(255, 0, 34, 1)")
+    t.is(c.rgb, "rgb(255, 0, 34)")
     t.is(c.int, 16711714)
     t.is(c.hsl.h, 352)
     t.is(c.hsl.s, 100)

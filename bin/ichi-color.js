@@ -107,44 +107,9 @@ IchiColor.prototype.__pauseUpdate_Hsv = false;
 IchiColor.prototype.__pauseUpdate_Hwb = false;
 
 
-IchiColor.prototype._rgb = function ()
-{
-    return {r: this.r, g: this.g, b: this.b};
-};
-
-
-// IchiColor.prototype._gethex = function ()
+// IchiColor.prototype._rgb = function ()
 // {
-//     var r = this.r.toString(16);
-//     var g = this.g.toString(16);
-//     var b = this.b.toString(16);
-//     var hex = '#';
-//     if (r.length == 1)
-//     {
-//         hex = hex + "0" + r;
-//     } else
-//     {
-//         hex = hex + r;
-//     }
-//
-//     if (g.length == 1)
-//     {
-//         hex = hex + "0" + g;
-//     } else
-//     {
-//         hex = hex + g;
-//     }
-//
-//     if (b.length == 1)
-//     {
-//         hex = hex + "0" + b;
-//     } else
-//     {
-//         hex = hex + b;
-//     }
-//
-//
-//     return hex;
+//     return {r: this.r, g: this.g, b: this.b};
 // };
 
 
@@ -155,54 +120,54 @@ IchiColor.prototype._rgb = function ()
  * @param brightness 色相调整值  [-100,100]
  * @returns {{red: (*|number), grain: (number|*), blue: (number|*)}}
  */
-IchiColor.prototype.adjust_hueSaturation = function (hue, saturation, brightness)
-{
-    // console.log(hue, saturation, brightness)
-    var hsv = this._getHsv();
-
-    if (hue != undefined)
-    {
-        hsv.h = hsv.h + hue;
-        if (hsv.h < 0)
-        {
-            hsv.h = 360 - hsv.h;
-        }
-        if (hsv.h > 360)
-        {
-            hsv.h = hsv.h - 360;
-        }
-
-    }
-
-    if (saturation != undefined)
-    {
-        hsv.s = hsv.s + saturation;
-        if (hsv.s < 0)
-        {
-            hsv.s = 0;
-        }
-        if (hsv.s > 100)
-        {
-            hsv.s = 100;
-        }
-    }
-
-    if (brightness != undefined)
-    {
-        hsv.v = hsv.v + brightness;
-        if (hsv.v < 0)
-        {
-            hsv.v = 0;
-        }
-        if (hsv.v > 100)
-        {
-            hsv.v = 100;
-        }
-    }
-
-    this._setFromHsv(hsv);
-    return this;
-};
+// IchiColor.prototype.adjust_hueSaturation = function (hue, saturation, brightness)
+// {
+//     // console.log(hue, saturation, brightness)
+//     var hsv = this._getHsv();
+//
+//     if (hue != undefined)
+//     {
+//         hsv.h = hsv.h + hue;
+//         if (hsv.h < 0)
+//         {
+//             hsv.h = 360 - hsv.h;
+//         }
+//         if (hsv.h > 360)
+//         {
+//             hsv.h = hsv.h - 360;
+//         }
+//
+//     }
+//
+//     if (saturation != undefined)
+//     {
+//         hsv.s = hsv.s + saturation;
+//         if (hsv.s < 0)
+//         {
+//             hsv.s = 0;
+//         }
+//         if (hsv.s > 100)
+//         {
+//             hsv.s = 100;
+//         }
+//     }
+//
+//     if (brightness != undefined)
+//     {
+//         hsv.v = hsv.v + brightness;
+//         if (hsv.v < 0)
+//         {
+//             hsv.v = 0;
+//         }
+//         if (hsv.v > 100)
+//         {
+//             hsv.v = 100;
+//         }
+//     }
+//
+//     this._setFromHsv(hsv);
+//     return this;
+// };
 
 
 IchiColor.prototype._getHsl = function ()
@@ -1623,7 +1588,7 @@ IchiColor.prototype.getRedGrainBlue = function ()
 
 IchiColor.prototype.getClone = function ()
 {
-    var clone = new IchiColor({r: this.r, g: this.g, b: this.b});
+    var clone = new IchiColor({r: this.r, g: this.g, b: this.b, a: this.alpha});
     return clone;
 };
 
