@@ -31,7 +31,6 @@
 var IchiColor = function (in_color)
 {
     //判断是被作为普通函数调用还是被 new 操作符作为构造函数调用
-
     if (typeof this === "object" && this.__isIchiColor)
     {
         var _new_mode = true;
@@ -60,7 +59,6 @@ var IchiColor = function (in_color)
         IchiColor.apply(color, arguments)
         return color;
     }
-
 
     // console.log(this.r, this.g, this.b)
     return this;
