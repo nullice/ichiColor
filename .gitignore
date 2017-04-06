@@ -1,5 +1,7 @@
 node_modules
-
+coverage
+.nyc_output
+.idea
 
 # Windows image file caches
 Thumbs.db
