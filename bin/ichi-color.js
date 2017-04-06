@@ -768,8 +768,10 @@ IchiColor.prototype.set = function (args)
 {
     if (arguments.length == 0)//无参数
     {
+        this.__pauseUpdate = true;
         this.r = 0;
         this.g = 0;
+        this.__pauseUpdate = false;
         this.b = 0;
         this.alpha = 1;
     }
@@ -832,8 +834,10 @@ IchiColor.prototype.set = function (args)
         {
             if (arguments[0].length == 3)
             {
+                this.__pauseUpdate = true;
                 this.r = arguments[0][0];
                 this.g = arguments[0][1];
+                this.__pauseUpdate = false;
                 this.b = arguments[0][2];
             }
         }
@@ -932,7 +936,14 @@ IchiColor.prototype.set = function (args)
     }
     else if (arguments.length === 3)
     {
-            this.set([arguments[0],arguments[1],arguments[2]]);
+
+        this.__pauseUpdate = true;
+        this.r = arguments[0];
+        this.g = arguments[1];
+        this.__pauseUpdate = false;
+        this.b = arguments[2];
+
+        // this.set([arguments[0], arguments[1], arguments[2]])
     }
 
     return this;
