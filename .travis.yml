@@ -4,3 +4,5 @@ node_js:
 
 service_name: travis-pro
 repo_token: FMnqVYPDh4s8Mm6fTWPtZvvUISZxVleUW
+after_success:
+    - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
