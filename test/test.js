@@ -1,7 +1,8 @@
 import test from 'ava';
 import IchiColor from './../bin/ichi-color';
 // import IchiColorEx from './../bin/ichi-color-extension';
-const OneColor = require("./../demo/vs/one-color")
+// const OneColor = require("./../demo/vs/one-color")
+
 
 test('Set IchiColor("#RRGGBB")', t =>
 {
@@ -78,6 +79,65 @@ test('Set IchiColor.hexRRGGBB', t =>
     testColor_c_1(t, c)
 });
 
+
+
+test('Set IchiColor.hexAARRGGBB', t =>
+{
+    var c = IchiColor()
+    c.set("#ffff0022")
+    testColor_c_1(t, c)
+    t.is(c.alpha,1)
+
+    var c = IchiColor()
+    c.set("#faff0022")
+    t.is(c.alpha,0.98)
+    c.alpha=1
+    testColor_c_1(t, c)
+
+
+    var c = IchiColor()
+    c.set("#af02")
+    t.is(c.alpha,0.67)
+    c.alpha=1
+    testColor_c_1(t, c)
+
+
+
+
+    var c = IchiColor()
+    c.ahex = "#faff0022"
+    t.is(c.alpha,0.98)
+    c.alpha=1
+    testColor_c_1(t, c)
+
+
+    var c = IchiColor()
+    c.ahex = "#af02"
+    t.is(c.alpha,0.67)
+    c.alpha=1
+    testColor_c_1(t, c)
+
+    var c = IchiColor()
+    c.argb = "#faff0022"
+    t.is(c.alpha,0.98)
+    c.alpha=1
+    testColor_c_1(t, c)
+
+
+    var c = IchiColor()
+    c.argb = "#af02"
+    t.is(c.alpha,0.67)
+    c.alpha=1
+    testColor_c_1(t, c)
+
+
+
+
+});
+
+
+
+
 test('Set IchiColor.hexRGB', t =>
 {
     var c = IchiColor()
@@ -137,6 +197,15 @@ test('Set IchiColor.rgba', t =>
     t.is(c.alpha, 0.4)
     c.rgba = "rgba(255, 0, 34, 0)"
     t.is(c.alpha, 0)
+
+    c.set({r:153, g:27, b:27, a: 0.55})
+    t.is(c.rgba, "rgba(153, 27, 27, 0.55)")
+
+    c.set({r:153, g:27, b:27, alpha: 0.55})
+    t.is(c.rgba, "rgba(153, 27, 27, 0.55)")
+
+
+
 });
 
 
@@ -172,6 +241,99 @@ test('Get IchiColor.hex', t =>
 });
 
 
+test('Get IchiColor.hsl', t =>
+{
+    var c = IchiColor()
+
+    function test_item(h, s, l, t, c)
+    {
+        c.set({h: h, s: s, l: l})
+        t.deepEqual(c.getHSL(), {h: h, s: s, l: l})
+    }
+
+    var hslList = [
+        [0, 0, 0],
+        // [336, 17, 100],
+
+    ]
+
+
+    TSET_scan_RGBList('Get IchiColor.hsl', test_item, hslList, t, c)
+
+});
+
+
+test('Conv IchiColor.hsl', t =>
+{
+
+    var c = IchiColor()
+
+    function test_item(r, g, b, t, c, listItem)
+    {
+        c.set(r, g, b)
+        var hsl = c.getHSL();
+        t.deepEqual(hsl, listItem[3])
+
+        c.set(hsl)
+        t.is(c.int >= 0, true)
+
+    }
+
+    var rgbList = [
+        [85, 0, 34, {h: 336, s: 100, l: 17}],
+        [85, 66, 34, {h: 38, s: 43, l: 23}],
+        [2, 3, 254, {h: 240, s: 99, l: 50}],
+        [1, 216, 35, {h: 129, s: 99, l: 43}],
+        [10, 10, 10, {h: 0, s: 0, l: 4}],
+        [2, 9, 249, {h: 238, s: 98, l: 49}]
+    ]
+    TSET_scan_RGBList('Conv IchiColor.hsl', test_item, rgbList, t, c)
+    // TSET_scan_allRGB('Conv IchiColor.hsl', test_item, t, c)
+
+})
+
+
+test('Conv IchiColor.hsv', t =>
+{
+
+    var c = IchiColor()
+
+    function test_item(r, g, b, t, c, listItem)
+    {
+        c.set(r, g, b)
+        var hsv = c.getHSV();
+        t.deepEqual(hsv, listItem[3])
+
+        c.set(hsv)
+        t.is(c.int >= 0, true)
+
+        var hwb = c.getHWB()
+        c.set(hwb)
+        t.is(c.int >= 0, true)
+
+
+        t.deepEqual(c.set(c.getRedGrainBlue()).getRedGrainBlue(), c.getRedGrainBlue())
+        t.deepEqual(c.set(c.getRGB()).getRGB(), c.getRGB())
+        t.deepEqual(c.set(c.getRedGreenBlue()).getRedGreenBlue(), c.getRedGreenBlue())
+    }
+
+    var rgbList = [
+        [153, 27, 28, {h: 360, s: 82, v: 60}],
+        [ 153, 153, 27, {h: 60, s: 82, v: 60}],
+        [153, 27, 27, {h: 0, s: 82, v: 60}],
+        [10, 10, 10, {h: 0, s: 0, v: 4}],
+        [10, 10, 11, {h: 240, s: 9, v: 4}],
+        [ 2, 57, 4, {h: 122, s: 96, v: 22}],
+        [ 2, 90, 139 , {h: 201, s: 99, v: 55}],
+
+
+    ]
+    TSET_scan_RGBList('Conv IchiColor.hsv', test_item, rgbList, t, c)
+    // TSET_scan_allRGB('Conv IchiColor.hsl', test_item, t, c)
+
+})
+
+
 test('Func IchiColor.getClone()', t =>
 {
     var c = IchiColor()
@@ -187,9 +349,9 @@ test('Func IchiColor.getInvertColor()', t =>
     c.rgba = "rgba(255, 0, 34, 1)"
     var c2 = c.getInvertColor()
 
-    t.is(c2.r , 0)
-    t.is(c2.g , 255)
-    t.is(c2.b , 255 - 34)
+    t.is(c2.r, 0)
+    t.is(c2.g, 255)
+    t.is(c2.b, 255 - 34)
 
 });
 
@@ -229,7 +391,7 @@ function TSET_scan_RGBList(tsetName, test_unit, rgbList, t, c)
     for (var i = 0; i < rgbList.length; i++)
     {
         count++;
-        test_unit(rgbList[i][0], rgbList[i][1], rgbList[i][2], t, c)
+        test_unit(rgbList[i][0], rgbList[i][1], rgbList[i][2], t, c, rgbList[i])
     }
 
 
@@ -263,6 +425,7 @@ function testColor_c_1(t, c)
     t.deepEqual(c.getHSL(), {h: 352, s: 100, l: 50})
     t.deepEqual(c.getHSV(), {h: 352, s: 100, v: 100})
     t.deepEqual(c.getHWB(), {h: 352, w: 0, b: 0})
+
 
 }
 

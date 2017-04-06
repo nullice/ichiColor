@@ -201,6 +201,11 @@ function test_task(taskname, taskList)
 console.log("test!")
 test()
 
+// TSET_scan_allRGB("tt",function (r,g,b)
+// {
+//     ichiColor.set(r, g, b)
+//     var hsl = ichiColor.getHSV()
+// })
 
 function oneColor_hex2rgb2hex_unit(r, g, b)
 {

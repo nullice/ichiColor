@@ -175,39 +175,41 @@ IchiColor.prototype._getHsl = function ()
     g = rgb[1];
     b = rgb[2];
 
-    max = Math.max(r, g, b);
-    min = Math.min(r, g, b);
-    l = (max + min) / 2;
 
-    if (max === min)
-    {
-        h = s = 0; // achromatic
-    }
-    else
-    {
-        d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    var max = Math.max(r, g, b);
+    var min = Math.min(r, g, b);
 
+    var h, s;
+
+    var l = ( min + max ) / 2.0;
+    if (min === max)
+    {
+        h = 0;
+        s = 0;
+    } else
+    {
+        var delta = max - min;
+
+        s = l <= 0.5 ? delta / ( max + min ) : delta / ( 2 - max - min );
         switch (max)
         {
             case r:
-                h = (g - b) / d + (g < b ? 6 : 0);
+                h = ( g - b ) / delta + ( g < b ? 6 : 0 );
                 break;
             case g:
-                h = (b - r) / d + 2;
+                h = ( b - r ) / delta + 2;
                 break;
             case b:
-                h = (r - g) / d + 4;
+                h = ( r - g ) / delta + 4;
                 break;
         }
-
         h /= 6;
     }
+
 
     h = h * 360;
     s = s * 100;
     l = l * 100;
-
 
     h = Math.round(h);
     s = Math.round(s);
@@ -751,7 +753,8 @@ IchiColor.prototype.set = function (args)
                 if (arguments[0].length === 5)//#argb
                 {
                     var _alpha = Number.parseInt(arguments[0].slice(1, 2), 16);
-                    this.alpha = ((_alpha & 0xf) << 4) | (_alpha & 0xf);
+                    _alpha= ( ((_alpha & 0xf) << 4) | (_alpha & 0xf)) / 255;
+                    this.alpha  =_alpha.toFixed(2)
 
                     var _hex3 = Number.parseInt(arguments[0].slice(2), 16);
                     this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0)
@@ -766,7 +769,7 @@ IchiColor.prototype.set = function (args)
                 else if (arguments[0].length === 9)//#aarrggbb
                 {
                     var _alpha = Number.parseInt(arguments[0].slice(1, 3), 16);
-                    this.alpha = _alpha;
+                    this.alpha = (_alpha / 255).toFixed(2);
 
                     arguments[0] = Number.parseInt(arguments[0].slice(3), 16);
                     _string_mod = "number";
@@ -837,7 +840,6 @@ IchiColor.prototype.set = function (args)
                     }
                     if (arguments[0]["b"] != undefined)
                     {
-                        x
                         this.hwb._b = arguments[0]["b"];
                     }
                     this._setFromHwb({h: this.hwb._h, w: this.hwb._w, b: this.hwb._b})
@@ -1060,21 +1062,21 @@ IchiColor.prototype.initSetterGetter = function ()
                     if (x.length === 5)
                     {
                         this.__pauseUpdate = true;
-                        var _alpha = Number.parseInt(x.slice(1, 2), 16);
-                        this.alpha = ((_alpha & 0xf) << 4) | (_alpha & 0xf);
-                        var _hex3 = Number.parseInt(x.slice(2), 16);
+                        var _alpha = Number.parseInt(arguments[0].slice(1, 2), 16);
+                        _alpha= ( ((_alpha & 0xf) << 4) | (_alpha & 0xf)) / 255;
+                        this.alpha  =_alpha.toFixed(2)
+                        var _hex3 = Number.parseInt(arguments[0].slice(2), 16);
                         this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0)
                         this.g = (_hex3 >> 4 & 0xf) | (_hex3 & 0xf0)
                         this.b = ((_hex3 & 0xf) << 4) | (_hex3 & 0xf)
                         this.__pauseUpdate = false;
                         this.__undateValue()
                     }
-                    else if (x.length === 7)
+                    else if (x.length === 9)
                     {
-                        var _alpha = Number.parseInt(x.slice(1, 3), 16);
-                        this.alpha = _alpha;
-
-                        x = Number.parseInt(x.slice(3), 16);
+                        var _alpha = Number.parseInt(arguments[0].slice(1, 3), 16);
+                        this.alpha = (_alpha / 255).toFixed(2);
+                        x = Number.parseInt(arguments[0].slice(3), 16);
                         this.int = x;
                     }
                 }
