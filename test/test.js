@@ -128,8 +128,89 @@ test('Set IchiColor.hwb', t =>
     testColor_c_1(t, c)
 });
 
+test('Set IchiColor.rgba', t =>
+{
+    var c = IchiColor()
+    c.rgba = "rgba(255, 0, 34, 1)"
+    testColor_c_1(t, c)
+    c.rgba = "rgba(255, 0, 34, 0.4)"
+    t.is(c.alpha, 0.4)
+    c.rgba = "rgba(255, 0, 34, 0)"
+    t.is(c.alpha, 0)
+});
 
 
+test('Get IchiColor.hex', t =>
+{
+    var c = IchiColor()
+
+    function test_item(r, g, b, t, c)
+    {
+        c.set(r, g, b)
+        var hex = c.hex;
+        c.hex = hex
+        t.deepEqual([c.r, c.g, c.b], [r, g, b])
+    }
+
+    var rgbList = [
+        [0, 0, 0],
+        [1, 2, 3],
+        [255, 255, 255],
+        [255,0,0],
+        [0,255,0],
+        [255,0,0],
+        [0,1,32],
+        [2,2,3],
+        [16,16,15],
+    ]
+    TSET_scan_RGBList('Get IchiColor.hex', test_item, rgbList, t, c)
+
+    // c.set([0, 0, 0])
+    // t.is(c._gethex(),"#000000")
+    // c.set([255, 255, 255])
+    // t.is(c._gethex(),"#ffffff")
+});
+
+function TSET_scan_allRGB(tsetName, test_unit, t, c)
+{
+    var r = 0, g = 0, b = 0;
+    var count = 0;
+    var countMax = 255 * 255 * 255
+
+    console.info("[TSET_scan_allRGB] ", tsetName)
+
+    for (var r = 0; r < 255; r++)
+    {
+        for (var g = 0; g < 255; g++)
+        {
+            for (var b = 0; b < 255; b++)
+            {
+                count++;
+                test_unit(r, g, b, t, c)
+
+            }
+        }
+    }
+
+}
+
+
+function TSET_scan_RGBList(tsetName, test_unit, rgbList, t, c)
+{
+    var r = 0, g = 0, b = 0;
+    var count = 0;
+    var countMax = 255 * 255 * 255
+
+    console.info("[TSET_scan_RGBList] ", tsetName)
+
+    for (var i = 0; i < rgbList.length; i++)
+    {
+        count++;
+        test_unit(rgbList[i][0], rgbList[i][1], rgbList[i][2], t, c)
+    }
+
+
+}
 
 
 function testColor_c_1(t, c)
@@ -150,6 +231,7 @@ function testColor_c_1(t, c)
     t.is(c.hwb.h, 352)
     t.is(c.hwb.w, 0)
     t.is(c.hwb.b, 0)
+
 
     t.deepEqual(c.getRGB(), {r: 255, g: 0, b: 34})
     t.deepEqual(c.getRedGrainBlue(), {red: 255, grain: 0, blue: 34})

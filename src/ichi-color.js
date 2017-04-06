@@ -107,39 +107,39 @@ IchiColor.prototype._rgb = function ()
 };
 
 
-IchiColor.prototype._gethex = function ()
-{
-    var r = this.r.toString(16);
-    var g = this.g.toString(16);
-    var b = this.b.toString(16);
-    var hex = '#';
-    if (r.length == 1)
-    {
-        hex = hex + "0" + r;
-    } else
-    {
-        hex = hex + r;
-    }
-
-    if (g.length == 1)
-    {
-        hex = hex + "0" + g;
-    } else
-    {
-        hex = hex + g;
-    }
-
-    if (b.length == 1)
-    {
-        hex = hex + "0" + b;
-    } else
-    {
-        hex = hex + b;
-    }
-
-
-    return hex;
-};
+// IchiColor.prototype._gethex = function ()
+// {
+//     var r = this.r.toString(16);
+//     var g = this.g.toString(16);
+//     var b = this.b.toString(16);
+//     var hex = '#';
+//     if (r.length == 1)
+//     {
+//         hex = hex + "0" + r;
+//     } else
+//     {
+//         hex = hex + r;
+//     }
+//
+//     if (g.length == 1)
+//     {
+//         hex = hex + "0" + g;
+//     } else
+//     {
+//         hex = hex + g;
+//     }
+//
+//     if (b.length == 1)
+//     {
+//         hex = hex + "0" + b;
+//     } else
+//     {
+//         hex = hex + b;
+//     }
+//
+//
+//     return hex;
+// };
 
 
 /**
