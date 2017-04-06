@@ -759,8 +759,8 @@ IchiColor.prototype.set = function (args)
                 if (arguments[0].length === 5)//#argb
                 {
                     var _alpha = Number.parseInt(arguments[0].slice(1, 2), 16);
-                    _alpha= ( ((_alpha & 0xf) << 4) | (_alpha & 0xf)) / 255;
-                    this.alpha  =_alpha.toFixed(2);
+                    _alpha = ( ((_alpha & 0xf) << 4) | (_alpha & 0xf)) / 255;
+                    this.alpha = _alpha.toFixed(3);
 
                     var _hex3 = Number.parseInt(arguments[0].slice(2), 16);
                     this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0);
@@ -775,7 +775,7 @@ IchiColor.prototype.set = function (args)
                 else if (arguments[0].length === 9)//#aarrggbb
                 {
                     var _alpha = Number.parseInt(arguments[0].slice(1, 3), 16);
-                    this.alpha = (_alpha / 255).toFixed(2);
+                    this.alpha = (_alpha / 255).toFixed(3);
 
                     arguments[0] = Number.parseInt(arguments[0].slice(3), 16);
                     _string_mod = "number";
@@ -1069,8 +1069,8 @@ IchiColor.prototype.initSetterGetter = function ()
                     {
                         this.__pauseUpdate = true;
                         var _alpha = Number.parseInt(arguments[0].slice(1, 2), 16);
-                        _alpha= ( ((_alpha & 0xf) << 4) | (_alpha & 0xf)) / 255;
-                        this.alpha  =_alpha.toFixed(2);
+                        _alpha = ( ((_alpha & 0xf) << 4) | (_alpha & 0xf)) / 255;
+                        this.alpha = _alpha.toFixed(3);
                         var _hex3 = Number.parseInt(arguments[0].slice(2), 16);
                         this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0);
                         this.g = (_hex3 >> 4 & 0xf) | (_hex3 & 0xf0);
@@ -1081,7 +1081,7 @@ IchiColor.prototype.initSetterGetter = function ()
                     else if (x.length === 9)
                     {
                         var _alpha = Number.parseInt(arguments[0].slice(1, 3), 16);
-                        this.alpha = (_alpha / 255).toFixed(2);
+                        this.alpha = (_alpha / 255).toFixed(3);
                         x = Number.parseInt(arguments[0].slice(3), 16);
                         this.int = x;
                     }
@@ -1090,7 +1090,15 @@ IchiColor.prototype.initSetterGetter = function ()
             },
             get: function ()
             {
-                return this._rgbHex;
+
+                var x = this.alpha*255;
+                x = Math.round(this.alpha*255);
+                var char = x.toString(16);
+                if (char.length == 1)
+                {
+                    char = "0" + char;
+                }
+                return "#" + char + this._rgbHex.slice(1);
             }
         }
     );
@@ -1103,7 +1111,7 @@ IchiColor.prototype.initSetterGetter = function ()
             },
             get: function ()
             {
-                return this._rgbHex;
+                return this.ahex;
             }
         }
     );

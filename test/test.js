@@ -59,6 +59,12 @@ test('Set IchiColor(int)', t =>
 {
     var c = IchiColor(16711714)
     testColor_c_1(t, c)
+
+
+    c.set("2233")
+    t.is(c.int, 2233)
+
+
 });
 
 
@@ -93,11 +99,19 @@ test('Set IchiColor.hexAARRGGBB', t =>
     t.is(c.alpha,0.98)
     c.alpha=1
     testColor_c_1(t, c)
+    t.is(c.ahex,"#ffff0022")
+    t.is(c.argb,"#ffff0022")
 
+
+    c.set("#faff0022")
+    t.is(c.argb,"#faff0022")
+
+    c.set("#af02")
+    t.is(c.argb,"#aaff0022")
 
     var c = IchiColor()
     c.set("#af02")
-    t.is(c.alpha,0.67)
+    t.is(c.alpha,0.667)
     c.alpha=1
     testColor_c_1(t, c)
 
@@ -113,7 +127,7 @@ test('Set IchiColor.hexAARRGGBB', t =>
 
     var c = IchiColor()
     c.ahex = "#af02"
-    t.is(c.alpha,0.67)
+    t.is(c.alpha,0.667)
     c.alpha=1
     testColor_c_1(t, c)
 
@@ -126,7 +140,7 @@ test('Set IchiColor.hexAARRGGBB', t =>
 
     var c = IchiColor()
     c.argb = "#af02"
-    t.is(c.alpha,0.67)
+    t.is(c.alpha,0.667)
     c.alpha=1
     testColor_c_1(t, c)
 
@@ -204,6 +218,12 @@ test('Set IchiColor.rgba', t =>
     c.set({r:153, g:27, b:27, alpha: 0.55})
     t.is(c.rgba, "rgba(153, 27, 27, 0.55)")
 
+
+    c.set("rgba(255, 0, 34, 0.98)")
+    t.is(c.rgba, "rgba(255, 0, 34, 0.98)")
+
+    c.set("rgb(22, 0, 33)")
+    t.is(c.rgb, "rgb(22, 0, 33)")
 
 
 });
@@ -355,6 +375,15 @@ test('Func IchiColor.getInvertColor()', t =>
 
 });
 
+test('Func IchiColor.__colorValueRange()', t =>
+{
+    var c = IchiColor()
+    t.is(c.__colorValueRange(200,0,100)   , 100)
+    t.is(c.__colorValueRange(1,22,100)   , 22)
+    t.is(c._normaliz(255)   , 1)
+
+});
+
 
 function TSET_scan_allRGB(tsetName, test_unit, t, c)
 {
@@ -400,7 +429,6 @@ function TSET_scan_RGBList(tsetName, test_unit, rgbList, t, c)
 
 function testColor_c_1(t, c)
 {
-
     t.is(c.r, 255)
     t.is(c.g, 0)
     t.is(c.b, 34)
