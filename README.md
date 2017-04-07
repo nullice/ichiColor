@@ -108,9 +108,9 @@ ichiColor 支持你能遇到的几乎所有常见色彩格式，并且相赋值�
 - `theWavelength` (只读, 光谱波长)
 - `getWCAGcontrastThan()` (计算 Web 无障碍标准颜色对比度)
 
-使用扩展的 ichiColor 只是在非常简单，只要引入额外的 JavaScript 文件即可，即可：。
+使用扩展的 ichiColor 只是在非常简单，只要引入额外的 JavaScript 文件即可，详细见后面的说明。
 
-  \*  *扩展功能没有包含在没有在代码覆率测试中*
+  \*  *扩展功能没有包含在代码覆率测试中*
 
 
 
@@ -146,7 +146,7 @@ ichiColor 同时支持浏览器与 Node.js 端，并且没有任何依赖（扩�
 
 ###  包管理工具
 
-如果你使用包管理工具 npm 或者yarn ：
+如果你使用包管理工具 npm 或者 yarn ：
 ```
 yarn add ichi-color
 ```
