@@ -73,13 +73,8 @@ var mainVue = new Vue({
                 }
             }
         }
-
-    }
-    ,
-
+    },
     components: {}
-    ,
-
 })
 
 
