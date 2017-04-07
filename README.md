@@ -1,7 +1,10 @@
 # ichiColor
 
+
 [![Build Status](https://travis-ci.org/nullice/ichiColor.svg?branch=master)](https://travis-ci.org/nullice/ichiColor)
 [![Coverage Status](https://coveralls.io/repos/github/nullice/ichiColor/badge.svg?branch=master)](https://coveralls.io/github/nullice/ichiColor?branch=master)
+[![npm](https://img.shields.io/npm/v/ichi-color.svg)](https://www.npmjs.com/package/ichi-color)
+[![GitHub release](https://img.shields.io/github/release/nullice/ichiColor.svg)](https://github.com/nullice/ichiColor/releases)
 
 一个数据响应风格的 Javascript 颜色处理模块  
 
@@ -33,6 +36,7 @@
 - `hex` (色彩值十六进制文本)
 - `int` (色彩值十进制整数)
 - `rgba` (CSS 格式 RGBA 文本)
+- `ahex` (`argb` 包含 alpha 通道的色彩值十六进制文本) 
 
 **extension 扩展功能**
 - `hsl255` (Microsoft Office 色彩选择器风格)
