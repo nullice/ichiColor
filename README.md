@@ -1,7 +1,10 @@
 # ichiColor
 
+
 [![Build Status](https://travis-ci.org/nullice/ichiColor.svg?branch=master)](https://travis-ci.org/nullice/ichiColor)
 [![Coverage Status](https://coveralls.io/repos/github/nullice/ichiColor/badge.svg?branch=master)](https://coveralls.io/github/nullice/ichiColor?branch=master)
+[![npm](https://img.shields.io/npm/v/ichi-color.svg)](https://www.npmjs.com/package/ichi-color)
+[![GitHub release](https://img.shields.io/github/release/nullice/ichiColor.svg)](https://github.com/nullice/ichiColor/releases/tag/1.0.0)
 
 一个数据响应风格的 Javascript 颜色处理模块  
 
