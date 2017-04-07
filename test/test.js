@@ -78,6 +78,15 @@ test('Set IchiColor.r/g/b', t =>
 });
 
 
+test('Set IchiColor.rgb', t =>
+{
+    var c = IchiColor()
+    c.rgb = "rgb(255, 0, 34)"
+
+    testColor_c_1(t, c)
+});
+
+
 test('Set IchiColor.hexRRGGBB', t =>
 {
     var c = IchiColor()
@@ -108,6 +117,10 @@ test('Set IchiColor.hexAARRGGBB', t =>
 
     c.set("#af02")
     t.is(c.argb,"#aaff0022")
+
+    c.set("#a3020203")
+    t.is(c.argb,"#a3020203")
+
 
     var c = IchiColor()
     c.set("#af02")
@@ -310,6 +323,8 @@ test('Conv IchiColor.hsl', t =>
     TSET_scan_RGBList('Conv IchiColor.hsl', test_item, rgbList, t, c)
     // TSET_scan_allRGB('Conv IchiColor.hsl', test_item, t, c)
 
+
+    t.is(   c.set({h: 360, s: 10, l:10}).int,1840919 )
 })
 
 
