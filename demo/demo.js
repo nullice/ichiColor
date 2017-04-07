@@ -19,23 +19,67 @@ function fiter_IchiColor(x)
 }
 
 
-
 window.cc = IchiColor("#F24")
 
 Vue.filter('ichiColor', fiter_IchiColor);
 var mainVue = new Vue({
     el: '#colordesk',
-    methods: {},
-    name:"ffd",
+    methods: {
+        utime: function ()
+        {
+            var randomIndex = Math.floor(Math.random() * (this.propertyList.length - 1))
+            var self = this
+            this.showProperty = this.propertyList[randomIndex]
+            setTimeout(function ()
+            {
+                self.utime()
+            }, 4200)
+        }
+    },
+    name: "ffd",
+    ready: function ()
+    {
+        this.utime()
+    },
 
     data: {
         msg: "sadfasdfasdfds",
         colors: [1, 2, 3, 4, 5, 6, 1, 7, 8, 9,],
         adjust: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0,],
         IchiColor: IchiColor,
+        propertyList: ["r", "g", "b", "argb", "rgb", "rgba", "hex", "hsl.l", "hsl.h", "hsl.s", "hsv.v", "hsv.s", "hsv.v", "hwb.w", "ex.lab.l", "ex.lab.a", "ex.lab.b", "int" ,"ex.xyz.z"],
         scolor1: window.cc,
-    },
+        showProperty: "r",
+
+    }
+    ,
+    computed: {
+
+        showValue: {
+            get: function ()
+            {
+                var ts = this.showProperty.split(".")
+                if (ts.length === 1)
+                {
+                    return this.scolor1[ts[0]]
+                }
+                else if (ts.length === 2)
+                {
+                    return this.scolor1[ts[0]][ts[1]]
+                }
+                else if (ts.length === 3)
+                {
+                    return this.scolor1[ts[0]][ts[1]][ts[2]]
+                }
+            }
+        }
+
+    }
+    ,
+
     components: {}
+    ,
+
 })
 
 
