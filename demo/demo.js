@@ -33,7 +33,7 @@ var mainVue = new Vue({
             setTimeout(function ()
             {
                 self.utime()
-            }, 4200)
+            }, 3900)
         }
     },
     name: "ffd",
