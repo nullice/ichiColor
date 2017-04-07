@@ -24,12 +24,22 @@
 //
 
 ```
-这是从 UI 构建工具 UI-DNA 中独立出的模块。非常适合用来制作色彩选择器：
+这是从 UI 构建工具 [UI-DNA](https://github.com/nullice/UI-DNA) 中独立出来的模块。非常适合用来制作色彩选择器：
+
+<p align="center">
+ <a href="https://nullice.github.io/ichiColor/demo/demo.html">  <h3>DEMO</h3></a>
+</p>
+
+<p align="center">
+  <img  src ="https://camo.githubusercontent.com/c10c48507ae27228904724b76ae6dcfeacdf93ac/687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f633335343139663167773166347162746f636e7834673230636830636a316b782e676966" />
+</p>
+
+
+
 
 <p align="center">
 
 ![](https://raw.githubusercontent.com/nullice/ichiColor/master/demo/DocScreenshot/DEMO.png)
-### [**DEMO**](https://nullice.github.io/ichiColor/demo/demo.html)
 
 </p>
 
