@@ -28,6 +28,22 @@
 
 ## Features
 
+### 响应式风格 所有操作通过属性赋值
+
+```
+var ichiColor = ichiColor("#faa")
+ichiColor.r = 
+
+
+
+```
+
+<p align="center">
+
+[![](https://raw.githubusercontent.com/nullice/ichiColor/master/demo/DocScreenshot/ichiColorWithVueJs.gif)](https://jsfiddle.net/nullice/zuk55k9j/)
+
+</p>
+
 支持色彩以下色彩值间的转换：
 - `rgb`
 - `hsl`
