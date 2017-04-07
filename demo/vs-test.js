@@ -404,11 +404,11 @@ function TSET_scan_allRGB(tsetName, test_unit)
 
     console.info("[TSET_scan_allRGB] ", tsetName)
     timeStart("[TSET_scan_allRGB]" + tsetName)
-    for (var r = 0; r < 255; r++)
+    for (var r = 0; r < 256; r++)
     {
-        for (var g = 0; g < 255; g++)
+        for (var g = 0; g < 256; g++)
         {
-            for (var b = 0; b < 255; b++)
+            for (var b = 0; b < 256; b++)
             {
                 count++;
                 test_unit(r, g, b)
