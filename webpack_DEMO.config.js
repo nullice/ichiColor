@@ -7,7 +7,7 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        main:['babel-polyfill','./demo/demo.js'],
+        main:['./demo/demo.js'],
     },
     output: {
         path: './demo',

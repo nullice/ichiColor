@@ -89,6 +89,13 @@ function timeEnd(title)
 
 //----------------
 
+if (typeof exports === "object" && typeof module !== "undefined")
+{
+    console.log("test!")
+
+    test()
+}
+
 
 function test(all)
 {
@@ -108,7 +115,7 @@ function test(all)
 
     } else
     {
-        var rgbList = getRandamRGBList(50000)
+        var rgbList = getRandamRGBList(30000)
         var test_count = "随机 " + rgbList.length + " 颜色"
     }
 
@@ -119,8 +126,6 @@ function test(all)
             {name: "ichiColor", func: ichiColor_hex2rgb2hex_unit, param: rgbList},
             {name: "three.js", func: threeColor_hex2rgb2hex_unit, param: rgbList},
             {name: "one-color", func: oneColor_hex2rgb2hex_unit, param: rgbList},
-            // {name: "colorjs", func: colorjs_hex2rgb2hex_unit, param: rgbList},
-
         ]
     )
 
@@ -131,8 +136,6 @@ function test(all)
             {name: "ichiColor", func: ichiColor_rgb2hex_unit, param: rgbList},
             {name: "three.js", func: threeColor_rgb2hex_unit, param: rgbList},
             {name: "one-color", func: oneColor_rgb2hex_unit, param: rgbList},
-            // {name: "colorjs", func: colorjs_hex2rgb2hex_unit, param: rgbList},
-
         ]
     )
 
@@ -143,8 +146,6 @@ function test(all)
             {name: "ichiColor", func: ichiColor_rgb2hsl_unit, param: rgbList},
             {name: "three.js", func: threeColor_rgb2hsl_unit, param: rgbList},
             {name: "one-color", func: oneColor_rgb2hsl_unit, param: rgbList},
-            // {name: "colorjs", func: colorjs_hex2rgb2hex_unit, param: rgbList},
-
         ]
     )
 
@@ -155,19 +156,15 @@ function test(all)
             {name: "ichiColor", func: ichiColor_rgb_unit, param: rgbList},
             {name: "three.js", func: threeColor_rgb_unit, param: rgbList},
             {name: "one-color", func: oneColor_rgb_unit, param: rgbList},
-            // {name: "colorjs", func: colorjs_hex2rgb2hex_unit, param: rgbList},
-
         ]
     )
 
-    var reorpt5 = test_task(test_count + " mix ",
+    var reorpt5 = test_task(test_count + " get x20 ",
         [
             {name: "tinycolor", func: tinycolor_mix_unit, param: rgbList},
             {name: "ichiColor", func: ichiColor_mix_unit, param: rgbList},
             {name: "three.js", func: threeColor_mix_unit, param: rgbList},
             {name: "one-color", func: oneColor_mix_unit, param: rgbList},
-            // {name: "colorjs", func: colorjs_hex2rgb2hex_unit, param: rgbList},
-
         ]
     )
     console.log(JSON.stringify(reorpt1, null, 4))
@@ -175,6 +172,8 @@ function test(all)
     console.log(JSON.stringify(reorpt3, null, 4))
     console.log(JSON.stringify(reorpt4, null, 4))
     console.log(JSON.stringify(reorpt5, null, 4))
+
+    return ([reorpt1, reorpt2, reorpt3, reorpt4, reorpt5])
 }
 
 function test_task(taskname, taskList)
@@ -197,9 +196,6 @@ function test_task(taskname, taskList)
 
 }
 
-
-console.log("test!")
-test()
 
 // TSET_scan_allRGB("tt",function (r,g,b)
 // {
@@ -245,7 +241,7 @@ function oneColor_mix_unit(r, g, b)
 {
     var oneColor = OneColor([r, g, b, 0])
 
-    for (var i = 0; i < 1; i++)
+    for (var i = 0; i < 20; i++)
     {
         var hsl = {
             h: Math.floor(oneColor.h() * 255),
@@ -282,7 +278,7 @@ function threeColor_rgb2hsl_unit(r, g, b)
 {
     threeColor.setRGB(r / 255, g / 255, b / 255)
     var _hsl = threeColor.getHSL()
-    var hsl = {h: Math.floor(_hsl.h * 255), s: Math.floor(_hsl.s * 100), l: Math.floor(_hsl.l * 100)}
+    var hsl = {h: Math.floor(_hsl.h * 360), s: Math.floor(_hsl.s * 100), l: Math.floor(_hsl.l * 100)}
 }
 function threeColor_rgb_unit(r, g, b)
 {
@@ -296,7 +292,7 @@ function threeColor_mix_unit(r, g, b)
     threeColor.setRGB(r / 255, g / 255, b / 255)
 
 
-    for (var i = 0; i < 1; i++)
+    for (var i = 0; i < 20; i++)
     {
         var _hsl = threeColor.getHSL()
         var hsl = {h: Math.floor(_hsl.h * 255), s: Math.floor(_hsl.s * 100), l: Math.floor(_hsl.l * 100)}
@@ -341,7 +337,7 @@ function tinycolor_rgb_unit(r, g, b)
 function tinycolor_mix_unit(r, g, b)
 {
     var tcolor = tinycolor({r: r, g: g, b: b})
-    for (var i = 0; i < 1; i++)
+    for (var i = 0; i < 20; i++)
     {
 
         var tHsl = tcolor.toHsl()
@@ -367,15 +363,20 @@ function ichiColor_hex2rgb2hex_unit(r, g, b)
 function ichiColor_rgb2hex_unit(r, g, b)
 {
     //1.set rgb
+
     ichiColor.set(r, g, b)
     var hex = ichiColor.hex
 }
 function ichiColor_rgb2hsl_unit(r, g, b)
 {
 
-    ichiColor.set(r, g, b)
-    var hsl = ichiColor.getHSL()
+    ichiColor._r = r
+    ichiColor._g = g
+    ichiColor._b = b
+    var hsl = ichiColor._getHsl()
 
+
+    // var hsl = ichiColor._normalizArray([r, g, b], 0, 255, 1);
 }
 
 function ichiColor_rgb_unit(r, g, b)
@@ -387,7 +388,7 @@ function ichiColor_rgb_unit(r, g, b)
 function ichiColor_mix_unit(r, g, b)
 {
     ichiColor.set(r, g, b)
-    for (var i = 0; i < 1; i++)
+    for (var i = 0; i < 20; i++)
     {
         var hsl = ichiColor.getHSL()
         var hex = ichiColor.hex

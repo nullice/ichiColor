@@ -2,7 +2,9 @@
   "name": "ichi-color",
   "version": "1.0.0",
   "description": "javascript color calculation module",
-  "main": "./src/ichi-color.js",
+  "main": "./bin/ichi-color.js",
+  "module": "./src/ichi-color.js",
+
   "scripts": {
     "test": "nyc  ava",
     "report": "nyc report --reporter=html",

@@ -4,24 +4,49 @@
     <meta charset="UTF-8">
     <title>ichiColor Demo</title>
     <link rel="stylesheet" href="./Ex-morphogen/exmo_main.css">
-
+    <link rel="stylesheet" href="./Ex-morphogen/icon_font/style.css">
+    <script src="vue-color-cylinder/lodash.js"></script>
 
 </head>
 <body id="body"
       style="padding: 40px 100px;    max-width: 800px;   position: absolute;   right: 0; left: 0; margin: auto; padding: 50px 100px;">
 
 
-
 <!--IchiColor(<input v-model="colors[0]" type="text" class="exmo_input_text" list="team_list">) =-->
 <!--{{colors[0]|ichiColor|json}}-->
 
 
-<div style="max-width: 800px">
+<div id="vcc">
+    <vue-color-cylinder v-bind:ichi_color.sync="cc"></vue-color-cylinder>
+</div>
 
+
+<div style="max-width: 800px" id="colordesk">
     <div>
 
-        <h4>ichi-color</h4>
+        <h2>ichi-color</h2>
+        <div class="githublogo">
+
+            <p><a href="https://travis-ci.org/nullice/ichiColor"><img
+                    src="https://travis-ci.org/nullice/ichiColor.svg?branch=master" alt="Build Status" title=""/></a>
+                <a href="https://coveralls.io/github/nullice/ichiColor?branch=master"><img
+                        src="https://coveralls.io/repos/github/nullice/ichiColor/badge.svg?branch=master"
+                        alt="Coverage Status" title=""/></a>
+                <a href="https://www.npmjs.com/package/ichi-color"><img
+                        src="https://img.shields.io/npm/v/ichi-color.svg" alt="npm" title=""/></a>
+                <a href="https://github.com/nullice/ichiColor/releases"><img
+                        src="https://img.shields.io/github/release/nullice/ichiColor.svg" alt="GitHub release"
+                        title=""/></a>
+            </p>
+
+            <a class="github-button" href="https://github.com/nullice/ichiColor" data-style="mega"
+               data-count-href="/nullice/ichiColor/stargazers"
+               data-count-api="/repos/nullice/ichiColor#stargazers_count"
+               data-count-aria-label="# stargazers on GitHub" aria-label="Star nullice/ichiColor on GitHub">Star</a>
+        </div>
         <br>
+
+
         <div style="width: 200px; height: 40px; background: {{scolor1.hex}};"></div>
 
         R:<input v-model="scolor1.r" type="text" class="exmo_input_text">
@@ -30,6 +55,7 @@
         <br>
         int:<input v-model="scolor1.int" type="text" class="exmo_input_text">
         hex:<input v-model="scolor1.hex" type="text" class="exmo_input_text">
+        ahex:<input v-model="scolor1.ahex" type="text" class="exmo_input_text">
         <br>
         rgba:<input v-model="scolor1.rgba" style="width: 180px;" type="text" class="exmo_input_text">
 
@@ -37,6 +63,8 @@
         int:<input style="width: 200px;" max="16777215" min="0" v-model="scolor1.int" type="range" class="exmo_range">{{scolor1.int}}
 
         <br> <br>
+        A:<input max="1.0" min="0.0" step='.01' v-model="scolor1.alpha" type="range" class="exmo_range">{{scolor1.alpha}}
+        <br>
         R:<input max="255" min="0" v-model="scolor1.r" type="range" class="exmo_range">{{scolor1.r}}
         <br>
         G:<input max="255" min="0" v-model="scolor1.g" type="range" class="exmo_range">{{scolor1.g}}
@@ -143,14 +171,14 @@
 
             <br><br>
             <div style="font-size: 10px"> Luv</div>
-            L:<input max="100" min="0"  v-model="scolor1.ex.luv.l" type="range" class="exmo_range">{{scolor1.ex.luv.l}}
+            L:<input max="100" min="0" v-model="scolor1.ex.luv.l" type="range" class="exmo_range">{{scolor1.ex.luv.l}}
             <br>
-            u:<input max="200" min="-150"  v-model="scolor1.ex.luv.u" type="range" class="exmo_range">{{scolor1.ex.luv.u}}
+            u:<input max="200" min="-150" v-model="scolor1.ex.luv.u" type="range" class="exmo_range">{{scolor1.ex.luv.u}}
             <br>
-            v:<input max="200" min="-150"  v-model="scolor1.ex.luv.v" type="range" class="exmo_range">{{scolor1.ex.luv.v}}
+            v:<input max="200" min="-150" v-model="scolor1.ex.luv.v" type="range" class="exmo_range">{{scolor1.ex.luv.v}}
 
             <br><br>
-            <div style="font-size: 10px"> readonly </div>
+            <div style="font-size: 10px"> readonly</div>
             <br>
             Rec709: <span>{{scolor1.ex.theLuma_Rec709}}</span>
             <br>
@@ -168,20 +196,59 @@
     <br>
     <button class="exmo_button" onclick="scanInt()"> 扫描颜色</button>
 
-
-    <div>
-        <br> <br>
-        <a class="github-button" href="https://github.com/nullice/ichiColor" data-style="mega"
-           data-count-href="/nullice/ichiColor/stargazers" data-count-api="/repos/nullice/ichiColor#stargazers_count"
-           data-count-aria-label="# stargazers on GitHub" aria-label="Star nullice/ichiColor on GitHub">Star</a>
-    </div>
 </div>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <script src="./vue.js"></script>
 <script src="./vs/one-color.js"></script>
+
 <script src="./demo-main.js"></script>
+<script src="./vue-color-cylinder/vcc.js"></script>
 
 
+<style>
+    .color-range .range-input .spin-button .spin-up, .color-range .range-input .spin-button .spin-down {
+        transform: scale(0.7) translate(-1px, 1px);
+    }
+
+    .color-range .range-input .spin-button {
+        top: -18px;
+    }
+
+    .vue-color-cylinder-main-box {
+        margin-top: 64px;
+    }
+
+    .vue-color-cylinder-main-box:not(:hover) {
+
+        transition: all .3s;
+        opacity: .96;
+        background: rgba(255, 255, 255, 0.85);
+    }
+
+    .color-range {
+        white-space: nowrap;
+        cursor: default;
+    }
+
+    .color-picker {
+        cursor: move;
+    }
+
+    h2 {
+        font-size: 64px;
+        font-weight: 300;
+        margin-bottom: 0;
+    }
+
+    .githublogo p {
+        display: inline-block;
+        vertical-align: baseline;
+        line-height: 20px;
+        margin: 10px 0;
+    }
+
+
+</style>
 </body>
 </html>

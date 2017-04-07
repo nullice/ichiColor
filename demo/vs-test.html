@@ -14,7 +14,36 @@
 
     <script src="./vs-test.js"></script>
 </head>
-<body>
+<body  style="padding: 40px 100px;    max-width: 800px;   position: absolute;   right: 0; left: 0; margin: auto; padding: 50px 100px;">
+
+<script>
+    var data ={reports:""}
+</script>
+<button class="exmo_button" onclick="data.reports = test()"> 对比测试 - 30000 随机颜色</button>
+<button class="exmo_button" onclick="data.reports = test(true)"> 对比测试 - 全部 RGB 颜色</button>
+
+<pre>
+    {{data.reports|json 4}}
+</pre>
+
+<script>
+
+var v = new Vue({
+        el: 'body',
+        methods: {
+
+        },
+        data:{
+            data:data
+        },
+
+
+
+
+    })
+
+
+</script>
 
 
 

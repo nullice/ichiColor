@@ -2,29 +2,31 @@
  * Created by bgllj on 2016/11/7.
  */
 
-import _IchiColor from "./../src/ichi-color.js"
-import ColorRNA from "./../src/lib/ColorRNA"
-import IchiColorEx from "./../src/ichi-color-extension.js"
+import _IchiColor from "./../"
+import IchiColorEx from "./../bin/ichi-color-extension.js"
+
 
 var IchiColor = IchiColorEx(_IchiColor)
 
 window.IchiColorEx = IchiColorEx;
 window.IchiColor = IchiColor;
 window.Color = IchiColor;
-window.ColorRNA = ColorRNA;
-
 
 
 function fiter_IchiColor(x)
 {
     return IchiColor(x)._rgb();
 }
-Vue.filter('ichiColor', fiter_IchiColor);
 
-window.cc = IchiColor("#FFF")
+
+
+window.cc = IchiColor("#F24")
+
+Vue.filter('ichiColor', fiter_IchiColor);
 var mainVue = new Vue({
-    el: 'body',
+    el: '#colordesk',
     methods: {},
+    name:"ffd",
 
     data: {
         msg: "sadfasdfasdfds",
