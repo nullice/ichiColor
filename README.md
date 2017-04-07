@@ -27,7 +27,7 @@
 这是从 UI 构建工具 [UI-DNA](https://github.com/nullice/UI-DNA) 中独立出来的模块。非常适合用来制作色彩选择器：
 
 <p align="center">
- <a href="https://nullice.github.io/ichiColor/demo/demo.html">  <b>DEMO</b></a>
+ <a target="_blank" href="https://nullice.github.io/ichiColor/demo/demo.html">  <b>DEMO</b></a>
 </p>
 
 <p align="center">
