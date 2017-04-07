@@ -36,6 +36,7 @@
 - `hex` (色彩值十六进制文本)
 - `int` (色彩值十进制整数)
 - `rgba` (CSS 格式 RGBA 文本)
+- `ahex` (`argb` 包含 alpha 通道的色彩值十六进制文本) 
 
 **extension 扩展功能**
 - `hsl255` (Microsoft Office 色彩选择器风格)
