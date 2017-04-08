@@ -255,7 +255,7 @@ color1.b        //95
 ```js
 color1.getRGB()           //{r: 7, g: 58, b: 95}
 color1.getRedGrainBlue()  //{red: 7, grain: 58, blue: 95}
-color1.getRedGreenBlue()  //{red: this.r, green: this.g, blue: this.b };
+color1.getRedGreenBlue()  //{red: 7, green: 58, blue: 95 };
 color1.getHSL()           //{h: 205, s: 87, l: 20}
 color1.getHSV()           //{h: 205, s: 93, v: 37}
 color1.getHWB()           //{h: 205, w: 3, b: 63}
