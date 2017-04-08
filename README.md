@@ -144,24 +144,25 @@ ichiColor 的设计为作为取色控件而做了优化，对 ichiColor 实例�
 
 ichiColor 同时支持浏览器与 Node.js 端，并且没有任何依赖（扩展功能用到的 ColorRNA 库已打包整合进了 `ichi-color-extension.js`）。
 
-###  包管理工具
 
 如果你使用包管理工具 npm 或者 yarn ：
+
 ```
 yarn add ichi-color
 ```
+
 ```
 npm i ichi-color
 ```
 
-### 手动
-
-克隆或者下载 ichiColor [最新版本](https://github.com/nullice/ichiColor/releases) 的 `./bin` 目录下的 `ichi-color.js` ，如果你需要扩展功能，你还需要 `./bin` 目录下的 `ichi-color-extension.js`。（如果你没有用包管理工具又想要用 ES6 的的 `import` 则可以复制 `./src`  目录下的同名文件）
-
+或者手动添加文件：
 
 ```html
 <script type="text/javascript" src="ichi-color.js"></script>
 ```
+
+克隆或者下载 ichiColor [最新版本](https://github.com/nullice/ichiColor/releases) 的 `./bin` 目录下的 `ichi-color.js` ，如果你需要扩展功能，你还需要 `./bin` 目录下的 `ichi-color-extension.js`。 
+（如果你没有用包管理工具又想要用 ES6 的的 `import` 则可以复制 `./src`  目录下的同名文件）
 
 
 
