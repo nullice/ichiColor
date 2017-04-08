@@ -1,6 +1,6 @@
 {
   "name": "ichi-color",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "javascript color calculation module",
   "main": "./bin/ichi-color.js",
   "module": "./src/ichi-color.js",
