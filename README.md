@@ -77,8 +77,6 @@ var vueApp = new Vue({
 
 
 
-<script async src="//jsfiddle.net/nullice/zuk55k9j/embed/html,result/"></script>
-
 ### 全功能支持
 ichiColor 支持你能遇到的几乎所有常见色彩格式，并且相赋值式的操作能让你轻松的把色彩值组合成想要的形式。
 
@@ -113,14 +111,6 @@ ichiColor 支持你能遇到的几乎所有常见色彩格式，并且相赋值�
   \*  *扩展功能没有包含在代码覆率测试中*
 
 
-
-配合 Vue.js 可以用[非常少的代码](https://github.com/nullice/ichiColor/blob/master/demo/demo.html)完成色彩选择器，如 [demo](https://nullice.github.io/ichiColor/demo/demo.html)
-
-```
-    <input v-model="color1.r" type="text" > //用 vue 直接绑定属性
-```
-
-比其他同类库有更高的性能表现，如遍历所有颜色，比 [one-color](https://github.com/One-com/one-color) 快一个数量级
 
 
 ### 性能表现
