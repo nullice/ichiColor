@@ -1111,6 +1111,48 @@ IchiColor.prototype.initSetterGetter = function ()
     );
 
 
+    // HEXA
+    Object.defineProperty(this, "hexa",
+        {
+            set: function (x)
+            {
+                if (x[0] === "#")
+                {
+                    if (x.length === 5)
+                    {
+                        this.__pauseUpdate = true
+                        var _alpha = Number.parseInt(arguments[0].slice(4, 5), 16)
+                        _alpha = (((_alpha & 0xf) << 4) | (_alpha & 0xf)) / 255
+                        this.alpha = _alpha.toFixed(3)
+
+                        var _hex3 = Number.parseInt(arguments[0].slice(1, 4), 16)
+                        this.r = (_hex3 >> 8 & 0xf) | (_hex3 >> 4 & 0x0f0)
+                        this.g = (_hex3 >> 4 & 0xf) | (_hex3 & 0xf0)
+                        this.b = ((_hex3 & 0xf) << 4) | (_hex3 & 0xf)
+                        this.__pauseUpdate = false
+                        this.__undateValue()
+                    }
+                    else if (x.length === 9)
+                    {
+                        var _alpha = Number.parseInt(arguments[0].slice(7, 9), 16)
+                        this.alpha = (_alpha / 255).toFixed(3)
+                        x = Number.parseInt(arguments[0].slice(1, 7), 16)
+                        this.int = x
+                    }
+                }
+            },
+            get: function ()
+            {
+                return ("#" + this.ahex.slice(3, 9) + this.ahex.slice(1, 3))
+            },
+        },
+    )
+
+
+
+
+
+
     //RGB
     this.__use_rgb = false;
     this.__freshly_rgb = false;
